@@ -1,0 +1,364 @@
+\documentclass[12pt]{article}
+
+\usepackage{fancyhdr} % For the customized heading
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[most]{tcolorbox}
+\usepackage{multicol}
+\usepackage{adjustbox}
+\usepackage{amsmath,amsthm,amsfonts,amssymb} % For math symbols
+\usepackage{extramarks}
+\usepackage{graphicx} % For adding pictures
+\usepackage{booktabs}
+\usepackage{tabu}
+\usepackage[T1]{fontenc}
+\usepackage{enumitem}
+\usepackage[parfill]{parskip}
+\usepackage{changepage}
+\usepackage{scrextend}
+\usepackage{gauss}% http://ctan.org/pkg/gauss
+\usepackage{hyperref}
+\usepackage{mathtools}
+\usepackage{calc}
+\usepackage{scrextend}
+\usepackage{systeme}
+\usepackage{empheq}
+
+
+%% Packages for APA bibliographies 
+\usepackage{apacite} % for the references page
+\usepackage{url} % for hyperlinks in references
+
+
+%% BASIC DOCUMENT SETTINGS %%
+
+\graphicspath{ {./images/} } 
+
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in
+
+\linespread{1.1}
+
+\pagestyle{fancy}
+\lhead{\hmwkAuthorName}
+\chead{}
+\rhead{\hmwkTitle}
+\lfoot{\lastxmark}
+\cfoot{\thepage}
+
+\newcommand{\hmwkTitle}{\textbf{MATH 208: Take-Home Assignment}}
+\newcommand{\hmwkDueDate}{January 17, 2019}
+\newcommand{\hmwkClass}{\textbf{MATH 208 - Linear Algebra}}
+\newcommand{\hmwkClassTime}{Section A}
+\newcommand{\hmwkClassInstructor}{Dana Updegrove}
+\newcommand{\hmwkAuthorName}{\textbf{Isabel Giang}}
+\newcommand{\continueNextPage}{\begin{flushright}\textit{Continued on the next page...}
+\end{flushright} \pagebreak}
+\renewcommand\headrulewidth{0.4pt}
+\renewcommand\footrulewidth{0.4pt}
+
+\setlength\parindent{0pt}
+
+
+%% TITLE PAGE SETTINGS %%
+
+\title{
+    \vspace{2in}
+    \textmd{\textbf{\hmwkTitle}}\\
+    \large\vspace{0.1in}{\hmwkClass}\\
+    \large\vspace{0.1in}{\textbf{Date: }\hmwkDueDate}\\
+    \vspace{0.1in}{\textbf{Professor: }\hmwkClassInstructor}
+    \vspace{1in}
+}
+
+\author{\hmwkAuthorName}
+\date{}
+
+%% TODO:
+                   
+%% MATH STRUCTURES AND SHORTCUTS       %% 
+
+%% Solution environment
+\newtcolorbox[auto counter]{solution}[1][]
+{colframe=blue!20,
+	colback=white,
+	sharp corners,
+	title=Solution,
+	enhanced,
+	fontupper=\linespread{1.0}\selectfont,
+	coltitle=black,
+	fonttitle=\bfseries,
+	attach boxed title to top left={yshift*=-\tcboxedtitleheight/2, xshift=3mm},
+	boxed title style={sharp corners, colback=blue!20},
+	#1
+}
+
+
+%% Proof environment
+\newtcolorbox[auto counter]{lin-proof}[2][]
+{colframe=blue!20,
+	colback=white,
+	sharp corners,
+	title=Proof: #2,
+	enhanced,
+	coltitle=black,
+	fonttitle=\bfseries,
+	attach boxed title to top left={yshift*=-\tcboxedtitleheight/2, xshift=3mm},
+	boxed title style={sharp corners, colback=blue!20},
+	#1
+}
+
+%% Boxed answer environment
+\newtcbox{\boxedeq}[1][]{%
+    nobeforeafter, math upper, tcbox raise base,
+    enhanced, colframe=black,
+    colback=white, boxrule=0.5pt,
+    #1}
+
+%% Augmented matrix environment
+\newenvironment{amatrix}[1]{
+	\left[\begin{array}{@{}*{#1}{c}|c@{}}
+}{
+		\end{array}\right]
+}
+
+%% Vector notation
+\renewcommand{\vec}[1]{\mathbf{#1}}
+%% "Tombstone" QED for proofs
+\renewcommand\qedsymbol{$\blacksquare$}
+%% Linear transformation notation
+\newcommand{\lintrans}{T: \mathbf{R^{m}} \rightarrow \mathbf{R^{n}}}
+
+\begin{document}
+
+\textbf{Problem 2, page 43}
+
+The volume of traffic for a collection of intersections is show in the figure below. Find all possible values for $x_1, x_2, x_3$ and $x_4$. What is the minimum volume of traffic from $C$ to $D$?
+
+\includegraphics[scale=0.35]{prob21-4}
+
+\begin{solution}
+The number of cars entering each intersection must equal the number of cars leaving. There are four intersections, so  we can get the following system of equations:
+\begin{align*}
+70 + x_2 &= 85 + 40 + x_1 \label{A} \\
+40 + 20 + 25 + x_3 &= 30 + x_2 \\
+100 + x_1 &= 70 + x_4 \\
+30 + x_4 &= x_3 + 60
+\end{align*}
+We can rewrite these equations into the standard form of a system of linear equations:
+
+\begin{alignat*}{4}
+-x_1  & {}+{} & x_2  & {}{} & {}{}  & {}{} & {}={} & 55 \\
+ {}{} & {}{} &  -x_2 & {}+{} &  x_3 & {}{} & {}={} &  -55 \\
+  x_1 & {}{} & {}{} & {}{} & {}{} & {}{} & -x_4 {}={} & -30 \\
+ {}{} & {}{} & {}{} & {}{} & x_3 & {}+{} & x_4 {}={} & 30
+\end{alignat*}
+
+which can be converted into an augmented matrix and converted to echelon form:
+$$\begin{bmatrix} -1 & 1 & 0 & 0 & 55 \\ 
+				   0 & -1 & 1 & 0 & -55\\ 
+				   1 & 0 & 0 & -1 & -30 \\
+				   0 & 0 & -1 & 1 & 30 \\
+				   \end{bmatrix} \Rightarrow 
+\begin{bmatrix} -1 & 1 & 0 & 0 & 55 \\ 
+				   0 & -1 & 1 & 0 & -55\\ 
+				   0 & 0 & 1 & -1 & -30 \\
+				   0 & 0 & 0 & 0 & 0 \\
+				   \end{bmatrix}$$
+From this, we can get the following set of equations:
+\begin{alignat*}{4}
+-x_1  & {}+{} & x_2  & {}{} & {}{}  & {}{} & {}={} & 55 \\
+ {}{} & {}{} &  -x_2 & {}+{} &  x_3 & {}{} & {}={} &  -55 \\
+ {}{} & {}{} & {}{} & {}{} & x_3 & {}+{} & x_4 {}={} & 30
+\end{alignat*}
+
+Using back substitution and letting $x_4 = s_4$ as a free parameter, the set of solutions is: $$x_1 = s_4 - 30,000, \quad x_2 = s_4 + 25,000, \quad x_3 = s_4 - 30,000, \quad x_4 = s_4$$
+
+Thus there are infinitely many possible distributions of cars for the four intersections.
+
+It is not possible for a volume of cars to be negative, so $x_4 \geq 30,000.$ ~\\
+
+The minimum volume of cars from $C$ to $D$ is \textbf{30,000 cars.}
+
+\end{solution}
+\pagebreak
+
+\textbf{Problem 4, page 43}
+
+The volume of traffic for a collection of intersections shown in the figure below. Find all possible values for $x_1, x_2, x_3, x_4, x_5$ and $x_6$. 
+
+\includegraphics[scale=0.35]{prob41-4}
+
+\begin{solution}
+There are six intersections, so we will have six equations to represent the volume of traffic:
+\begin{align*}
+x_2 + 50 &= 20 + 40 + x_2 \\
+x_3 + x_4 + 20 &= x_2 + 45 \\
+45 + 60 &= x_4 + x_5 + 35 \\
+x_1 + 60 &= 80 \\
+80 &= 70 + x_3 \\ 
+x_5 + 70 &= x_6
+\end{align*}
+We can rewrite these equations into the standard form of a system of linear equations:
+$$\sysdelim..\systeme{
+  -x_1  + x_2                         = 10,
+         -x_2 + x_3 + x_4             = 25,
+                      x_4 + x_5       = 70,
+   x_1                                = 20,
+                x_3                   = 10,
+                            x_5 - x_6 = -70
+}$$
+which can be converted into an augmented matrix and converted to echelon form:
+$$\begin{bmatrix} -1 & 1 & 0 & 0 & 0 & 0 & 55 \\ 
+				   0 & -1 & 1 & 1 & 0 & 0 & -55\\ 
+				   0 & 0 & 0 & 1 & 1 & 0 & 70 \\
+				   1 & 0 & 0 & 0 & 0 & 0 & 20 \\
+				   0 & 0 & 1 & 0 & 0 & 0 & 10 \\
+				   0 & 0 & 0 & 0 & 1 & -1 & -70
+				   \end{bmatrix} \Rightarrow 
+\begin{bmatrix}   -1 & 1 & 0 & 0 & 0 & 0 & 10 \\ 
+				   0 & -1 & 1 & 1 & 0 & 0 & 25\\ 
+				   0 & 0 & 1 & 1 & 0 & 0 & 55 \\
+				   0 & 0 & 0 & 1 & 1 & 0 & 70 \\
+				   0 & 0 & 0 & 0 & 1 & 0 & 25 \\
+				   0 & 0 & 0 & 0 & 0 & -1 & -95
+				   \end{bmatrix} $$
+From this, we can get the following set of equations:
+
+$$\sysdelim..\systeme{
+  -x_1  + x_2                         = 10,
+         -x_2 + x_3 + x_4             = 25,
+                x_3 + x_4             = 55,
+                      x_4 + x_5       = 70,
+                            x_5       = 25,
+                                 -x_6 = -95
+}$$
+
+
+Using back substitution, the set of solutions is: $$\mathbf{x_1 = 20, \quad x_2 = 30, \quad x_3 = 10, \quad x_4 = 45, \quad x_5 = 25, \quad x_6 = 95}$$
+\end{solution}
+
+
+Use Example 5 as a guide to find the subspace of values that balances the given chemical equation.
+
+\textbf{Problem 74, page 160}
+
+Methane burns in oxygen to form carbon dioxide and steam.
+
+$$x_1CH_4 + x_2O_2 \rightarrow x_3CO_2 + x_4H_2O$$
+
+\begin{solution}
+In order to balance the chemical equation, we need to find values of $x_1$, $x_2$, $x_3$, $x_4$, such that the number of atoms for each element in the equation is the same for both sides.
+
+We can create the linear system:
+$$\sysdelim..\systeme{
+  -x_1 -        x_3                   = 0,
+  4x_1                        -2x_4   = 0,
+         2x_2 - 2x_3           -x_4   = 0
+}$$
+
+This can be converted into the following augmented matrix, which can be reduced into echelon form:
+
+$$\begin{bmatrix} 1 & 0 & -1 & 0 & 0 \\
+				   4 & 0 & 0 & -2 & 0 \\
+				   1 & 2 & -2 & -1 & 0 \end{bmatrix} \Rightarrow 
+\begin{bmatrix} 1 & 0 & 0 & -\frac{1}{2} & 0 \\
+				 0 & 1 & 0 & -1 & 0 \\
+				 0 & 0 & 1 & -\frac{1}{2} & 0 \end{bmatrix} $$
+				 
+From this we can get the following set of solutions:
+$$ x_1 = \frac{1}{2}s_4, \quad x_2 = s_4, \quad x_3 = \frac{1}{2}s_4,\quad  x_4 = s_4$$ where $s_4$ is a free parameter.
+
+We can use this to get a set of values that will satisfy the chemical equation. This is the subspace of values that balances the equation:
+
+$$\text{span}\left\lbrace \begin{bmatrix} \frac{1}{2} \\ 1 \\ \frac{1}{2} \\ 1 \end{bmatrix} \right\rbrace $$
+
+
+\end{solution}
+
+\pagebreak
+\textbf{Problem 76, page 160}
+
+Ethyl alcohol reacts with oxygen to form vinegar and water.
+
+$$x_1C_2H_5OH + x_2O_2 \rightarrow x_3HC_2H_3O_2 + x_4H_2O$$
+
+\begin{solution}
+In order to balance the chemical equation, we need to find values of $x_1$, $x_2$, $x_3$, $x_4$, such that the number of atoms for each element in the equation is the same for both sides.
+
+We can create the linear system:
+$$\sysdelim..\systeme{
+  2x_1 -          2x_3                   = 0,
+  5x_1 -          4x_3           -2x_4   = 0,
+   x_1 +   2x_2  -2x_3            -x_4   = 0,
+   x_1 -           x_3                   = 0
+}$$
+
+This can be converted into the following augmented matrix, which can be reduced into echelon form:
+
+$$\begin{bmatrix} 2 & 0 & -2 & 0 & 0 \\
+				   5 & -4 & 0 & 0 & 0 \\
+				   1 & 2 & -2 & -1 & 0 \\
+				   1 & 0 & -1 & 0 & 0 \end{bmatrix} \Rightarrow 
+\begin{bmatrix}  1 & 0 & 0 & -\frac{2}{3} & 0 \\
+				  0 & 1 & 0 & -\frac{5}{6} & 0 \\
+				  0  & 0 & 1 & -\frac{2}{3} & 0 \\
+				   0 & 0 & 0 & 0 & 0 \end{bmatrix} $$
+				 
+From this we can get the following set of solutions:
+$$ x_1 = \frac{2}{3}s_4, \quad x_2 = \frac{5}{6}s_4, \quad x_3 = \frac{2}{3}s_4,\quad  x_4 = s_4$$ where $s_4$ is a free parameter.
+
+We can use this to get a set of values that will satisfy the chemical equation. This is the subspace of values that balances the equation:
+
+$$\text{span}\left\lbrace \begin{bmatrix} \frac{2}{3} \\ \\ \frac{5}{6} \\ \\ \frac{2}{3} \\ \\ 1 \end{bmatrix} \right\rbrace $$
+
+
+
+\end{solution}
+
+\pagebreak
+\textbf{Problem 28, page 44}
+
+Find the values of the coefficients $a$, $b$, and $c$ so the given conditions for the function $f$ and its derivatives are met.
+
+$$f(x) = ae^{x} + be^{2x} + ce^{-3x}; f(0) = 2, f'(0) = 1,\text{ and } f''(0) = 19.$$
+
+
+\begin{solution}
+
+Compute the first and second derivatives of the function $f(x)$:
+
+$$ f'(x) = ae^{x} + 2be^{2x} - 2ce^{-3x}$$
+$$  f''(x) = ae^{x} + 4be^{2x} + 9ce^{-3x} $$
+
+Plug in $x = 0$ to cancel out the $e^{x}$ terms since $e^{0} = 1$:
+\begin{align*}
+f(0) &= a + b + c \\ 
+f'(0) &= a + 2b - 3c \\
+f''(0) &= a + 4b + 9c 
+\end{align*}
+
+Set these equations equal to the given initial conditions to form a system of equations:
+\begin{align*}
+a + b + c &= 2 \\ 
+a + 2b - 3c &= 1 \\
+a + 4b + 9c &= 19
+\end{align*}
+
+This can be converted to the following augmented matrix, which can be reduced to echelon form:
+
+$$ \begin{bmatrix} 1 & 1 & 1 & 2\\
+					1 & 2 & -3 & 1\\
+					1 & 4 & 9 & 19 \end{bmatrix} \Rightarrow 
+\begin{bmatrix} 1 & 0 & 0 & -2\\
+					0 & 1 & 0 & 3 \\
+					0 & 0 & 1 & 1 \end{bmatrix}$$
+					
+From this we can obtain values for the coefficents of the equation:
+$$a = -2, \quad b = 3, \quad c = 1 $$
+\end{solution}
+\end{document}
