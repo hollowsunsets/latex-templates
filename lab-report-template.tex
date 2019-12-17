@@ -1,0 +1,609 @@
+\documentclass[12pt]{article}
+
+%% Language and font encodings
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[most]{tcolorbox}
+
+\usepackage{booktabs}
+\usepackage{tabu}
+\usepackage[T1]{fontenc}
+\usepackage[parfill]{parskip}
+\usepackage{graphicx}
+
+\graphicspath{ {./images/} } 
+
+%% Sets page size and margins
+\usepackage[a4paper,top=3cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+%% Useful packages
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+\usepackage{apacite} % for the references page
+\usepackage{url} % for hyperlinks in references
+
+
+
+\title{\textbf{Comparing the Experimental and Theoreotical Time of Discharge for a Rolled Capacitor in an RC Circuit} \\ \Large PHYS 122: Electromagnetism}
+\author{Isabel Giang, Philip Ovanesyan, \\ Tianye Wang, Yufei Li}
+
+\begin{document}
+
+
+\begin{titlepage}
+\maketitle
+\end{titlepage}
+
+\pagebreak
+
+
+\section*{\centering Abstract}
+
+This lab report describes an scientific experiment in which  the time required for a fully charged capacitor $t$ in a resistor-capacitor (RC) circuit to completely discharge was experimentally measured in real time using a graphical software, Logger Pro. This experimentally measured time was compared to the time that \emph{should} theoretically have elapsed according a derived mathematical model that describes the time constant for an RC circuit. This mathematical model is derived from the equation that describes the voltage $V_C$ of a discharging capacitor at a given time $t$, which is derived using Kirchoff's Law, Ohm's Law and the definition of capacitance, calculus, algebra and differential equations. Our results were inconclusive due to errors in correctly conducting our experimental procedure.
+
+
+Keywords: capacitor, resistor, capacitance, voltage, RC circuits, potential difference, time constant
+\pagebreak
+
+\tableofcontents
+\pagebreak
+
+\addcontentsline{toc}{section}{Introduction}
+\section*{\centering Introduction}
+
+\subsection*{What is a capacitor?}
+\addcontentsline{toc}{subsection}{What is a capacitor?}
+
+A \emph{capacitor} is a device that stores electric potential energy and electric charge. This is accomplished by insulating two conductors from one another - either using a vacuum or an insulator. 
+
+
+\begin{center} \includegraphics[scale=0.5]{rolled-capacitor} 
+\\ \footnotesize \textbf{Figure 1}: A rolled capacitor with a dieletric \end{center}
+
+
+The capacitor used in this experiment is a \emph{rolled capacitor}, which essentially consist of two rolled metal plates that are separated by a gel called a dieletric which electrically insulates the plates from one another.
+
+\subsection*{How are capacitors charged?}
+\addcontentsline{toc}{subsection}{How are capacitors charged?}
+
+
+
+\begin{center} \includegraphics[scale=0.75]{rc-circuit} \\ \footnotesize \textbf{Figure 2}: A series of RC circuits \end{center}
+
+Capacitors can be charged by charging the conductors such that one of the conductors has a negative charge, and the other has a positive charge of equal magnitude. This creates a fixed potential difference that is equal to the \emph{voltage $V_{ab}$} of whatever charged the capacitor.
+
+In an RC circuit, the capacitor \emph{charges} through the flow of current $I$ that passes through a resistor $R$ from a source of current $\varepsilon$ - typically a battery - to the plates of the capacitor.  When the source of current $\varepsilon$ is removed from the circuit, the capacitor's charge $q$ cannot be replenished, and it \emph{discharges} through the resistor $R$.
+
+The rate at which a capacitor charges or discharges is very similar to the mathematical relationship for the growth rate of populations.
+
+$$ \frac{dP}{dt} = kP $$ 
+
+The rate of population growth $\frac{dP}{dt}$ changes \emph{proportionally} to the size of the population $P$, where $k$ is some arbitrary proportionality constant. This makes sense, because if there are more people in a community, there will also be more people who are able to have children and produce more people. 
+
+
+Similarly, the charging and discharging rate of a capacitor in an RC circuit \emph{proportionally} to the amount of charge that is stored on the capacitor, because the current $I$ must pass through a resistor $R$ that slows the rate of charge.
+
+
+\subsection*{What is the purpose of this report?}
+\addcontentsline{toc}{subsection}{What is the purpose of this report?}
+
+
+This report describes an attempt to investigate, through scientific experimentation, how exactly the \emph{voltage} of a  capacitor in an RC circuit changes over time. 
+
+This was accomplished by using the theoretical mathematical model that describes how the voltage of a capacitor in an RC circuit changes over time. This mathematical model can be derived using the same methods to derive the mathematical model to describe the charge of a capacitor, because voltage is \emph{directly proportional} to charge.
+
+$$ V = \frac{Q}{C} $$
+
+We then used mathematical model to derive an equation for the \emph{theoretical} time it will take for an RC circuit based on a measured starting voltage, and compared this to the actual amount of time that it takes for a capacitor to completely discharge.
+
+
+
+\subsection*{Why is this important?} 
+\addcontentsline{toc}{subsection}{Why is this important?}
+
+It is useful to develop a better understanding of how capacitors interact with the other components of an RC circuit, because of how ubiquitous capacitors are in our day-to-day lives. 
+
+Capacitors have many uses in electronic and electrical systems - it is extremely rare for any product that uses electricity in some way to not have a capacitor. For example, capacitors are a fundamental component of digital cameras for producing camera flash.
+
+Understanding how a capacitor charges and discharges provides us with the knowledge to be able to control how the electric energy in a circuit and use that electric energy more precisely.
+
+
+\pagebreak
+\addcontentsline{toc}{section}{Theory}
+\section*{\centering Theory}
+
+\subsection*{Derivation of the Voltage of a Capacitor}
+\addcontentsline{toc}{subsection}{Derivation of the Voltage of a Capacitor}
+
+\textbf{Find an equation that describes the voltage of a capacitor in an RC circuit $V_C$.}
+
+\begin{center} \includegraphics[scale=0.05]{rc-circuit-kirchoff} \\ \footnotesize \textbf{Figure 3}: A general RC circuit  \end{center}
+
+Using Kirchoff's loop laws, find an equation that descibes the voltage of the circuit.
+\begin{align*}
+  V_B  	&= V_R + V_C  	&& {} \\ 
+    	&= IR + V_C 	&& \text{Ohm's Law, $V = IR$} \\
+\end{align*}
+Because the resistor and the capacitor of the circuit share the same current, 
+$I_R$ and $I_C$ are both equal to $C(\frac{dV_C}{dt})$. This can be substituted into the voltage equation:
+\begin{align*}
+  V_B  	&= IR + V_C && {} \\
+    	&= \left[C(\frac{dV_C}{dt})\right]R + V_C && {}
+\end{align*}
+This is a separable, first order differential linear equation.
+This means we can use algebra to rewrite this equation into a separable form and solve for $V_C$:
+\begin{align*}
+  V_B - V_C  	&= R C\frac{dV}{dt} && \text{Subtract $V_C$ from both sides} \\ 
+  \frac{dV}{V_B - V_C}  	&= \frac{dt}{R_C} && \text{Rewrite each side in terms of only one variable}
+\end{align*}
+This equation is separated and can now be integrated:
+\begin{align*}
+\int\frac{dV}{V_B - V_C} &= \int{\frac{dt}{RC}} && \text{Integrate both sides.} \\
+\text{ln}(V_B - V_C) &= \frac{-t}{RC} + C_0 && \text{$C_0$ is the constant of integration.} \\
+e^{\text{ln}(V_B - V_C)} &= e^{\frac{-t}{RC} + C^0} && \text{Raise both sides as a power of $e$.} \\
+{V_B - V_C} &= e^{\frac{-t}{RC}}e^{C_0} && \text{Seperate the left term using exponent rules.} \\
+{V_B - V_C} &= C e^{\frac{-t}{RC}} && \text{Rewrite $e^{C_0}$ as $C$ since it is a constant of integration.} 
+\end{align*}
+
+The general solution of the differential equation has been found, but we need an initial condition to get the specific equations without a constant of integration.
+
+We know that if the the capacitor is discharged, $V_C = 0$ at $t = 0$. We can use this as the initial condition for the differential equation.
+
+Plug $V_C = 0$ and $t = 0$ into the general solution to find $C$:
+\begin{align*}
+{V_B - (0)} &= C e^{\frac{-(0)}{RC}} && \text{Plug in } V_C = 0; t = 0 \\
+V_B &= C e^{0} && \text{} \\
+{V_B} &= C && e^{0} \text{ is equal to 1} 
+\end{align*}
+Now we can find the fully solved equation, by plugging in $V_B = C$:
+\begin{align*}
+{V_B - V_C} &= C e^{\frac{-t}{RC}} && \text{General solution.} \\
+{V_C} &= V_B - V_B  e^{\frac{-t}{RC}} && \text{Plug in $C = V_B$ and solve for $V_C$.} \\
+{V_C} &= V_B(1 - e^{\frac{-t}{RC}}) && \text{Factor out $V_B$.} \\
+\end{align*}
+
+\begin{tcolorbox}
+\textbf{Equation for the voltage of a charging capacitor $V_C$:}
+$$V_C = V_B(1 - e^{\frac{-t}{RC}})$$ 
+\end{tcolorbox}
+
+To find the equation for the voltage of a discharging capacitor $V_C$, we need to use a different initial condition for the general solution.
+
+If the capacitor is charged, $V_B = 0$ and $V_C$ is equal to some value that depends on the capacitance of the capacitor $C$. For the purposes of this derivation, this will be called $V_0$.
+
+Plug these values into the general solution to solve for C:
+\begin{align*}
+{(0) - (V_0)} &= C e^{\frac{-(0)}{RC}} && \text{Plug in } V_B = 0; V_C = V_0; t = 0 \\
+-V_0 &= C e^{0} && \text{} \\
+{-V_0} &= C && e^{0} \text{ is equal to 1} 
+\end{align*}
+
+Plug this value of C into the general solution:
+\begin{align*}
+{V_B - V_C} &= C e^{\frac{-t}{RC}} && \text{General solution.} \\
+{-V_C} &= -V_0 e^{\frac{-t}{RC}} && \text{Plug in $C = V_0$ and solve for $V_C$.} \\
+{V_C} &= V_0 e^{\frac{-t}{RC}} && \text{Divide both sides by -1.} \\
+\end{align*}
+\begin{tcolorbox}
+\textbf{Equation for the voltage of a discharging capacitor $V_C$:}
+$$V_C = V_0 e^{\frac{-t}{RC}}$$ 
+\end{tcolorbox}
+
+\pagebreak
+\addcontentsline{toc}{section}{Methods and Materials}
+\section*{\centering Methods and Materials}
+
+\subsection*{Experiment Objectives}
+\addcontentsline{toc}{subsection}{Experiment Objectives}
+\begin{description}
+\item[$\bullet$] \noindent Experimentally measure the time constant of a discharging resistor-capacitor (RC) circuit
+\item[$\bullet$] \noindent Compare this measured time constant to the theoretical time constant predicted with a mathematical model for the component values of the resistor and capacitor in the RC circuit
+\end{description}
+
+\subsection*{Required Materials}
+\addcontentsline{toc}{subsection}{Required Materials}
+
+
+\begin{description}
+    \item[$\bullet$]
+  \noindent A computer with the Logger Pro graphical software suite installed
+  \item[$\bullet$]
+    \noindent Vernier voltage probe
+      \item[$\bullet$]
+    \noindent Vernier LabPro interface
+  \item[$\bullet$]
+  \noindent 3 lead resistors with different resistance, between 30 $\Omega$ and 100 $\Omega$
+    \item[$\bullet$]
+  \noindent 3 rolled capacitors with different capacitance, between 0.5 F and 1.0 F 
+      \item[$\bullet$]
+  \noindent A digital multimeter	
+        \item[$\bullet$]
+  \noindent Connecting wires
+  \item[$\bullet$]
+  \noindent Battery or a power supply 
+\end{description}
+
+\subsection*{Experimental Procedure}
+\addcontentsline{toc}{subsection}{Experimental Procedure}
+
+
+
+\subsubsection*{\emph{Part 1: Set up the data collection tools}}
+\addcontentsline{toc}{subsubsection}{Set up the data collection tools}
+
+
+1. Turn on the computer with Logger Pro installed.
+
+2. Power the LabPro interface by plugging it into an outlet, and connect the Vernier voltage probe to Channel 1 of the LabPro interface.
+
+\begin{center} \includegraphics[scale=0.075]{vernier-voltage-probe} \\ \footnotesize \end{center}
+
+
+3. Connect the USB connector into the LabPro interface to the computer the port with labeled with a branching icon. Connect the USB connector into the USB port of the computer with Logger Pro installed. 
+\begin{center} \includegraphics[scale=0.075]{vernier-usb-cable} \\ \footnotesize \end{center}
+
+
+4. Find a file called \emph{27 Capacitors.sql} and open it using the Logger Pro software. A coordinate axis should be displayed.
+
+5. Near the top of the window, click the \textbf{Experiment} menu, then click \textbf{Data Collection...}. A dialog box should appear.
+
+6. Follow the following instructions in the image below and modify the settings in the dialog box as it states.
+
+\begin{center} \includegraphics[scale=1.25]{logger-pro-instructions} \\ \footnotesize \end{center}
+\pagebreak
+7. Verify that the dialog box now looks like the following image, then click "Okay." 
+
+\begin{center} \includegraphics[scale=0.35]{logger-pro-verify} \\ \footnotesize \end{center}
+
+8. Keep this window open throughout the rest of the experiment.
+
+\pagebreak
+\subsubsection*{\emph{Part 2: Charge the capacitor using a power supply}}
+\addcontentsline{toc}{subsubsection}{Charge the capacitor using a power supply}
+
+
+1. Measure and use the following table to record \textbf{only the resistance and the capacitance} of the resistor and the capacitor. Use a digital multimeter to measure resistance.
+
+\begin{center}
+\begin{tabular}{|c |c |c |c |c||}
+ \hline
+Circuit & Charging Voltage $V_0$ (V) & Capacitance (F) & Resistance ($\Omega$) \\ [0.5ex] 
+ \hline\hline
+ {} & {} & {} & {} \\ 
+ \hline
+ {} & {}  & {} & {} \\
+ \hline
+ {} & {}  & {} & {} \\ 
+ \hline
+\end{tabular}
+\end{center}
+
+
+2. Prepare a circuit that will charge the capacitor according to the following diagram. \textbf{Do not complete the circuit by connecting the unconnected wire at this time.}
+\begin{center} \includegraphics[scale=0.25]{charging-rc} \\ \footnotesize \end{center}
+The circuit should have:
+\begin{description} 
+\item[$\bullet$] a power supply or battery $V$
+\item[$\bullet$] a capacitor $C$
+\item[$\bullet$] connecting wires
+\item[$\bullet$] a "switch" represented by an unconnected wire $S$
+\end{description}
+
+
+3. Connect the Vernier voltage probes to the segments of wire just outside of the capacitor so they will only measure the capacitor's voltage. See the following diagram.
+
+\begin{center} \includegraphics[scale=0.075]{measure-capacitance-voltage} \\ \footnotesize \end{center}
+
+4. Connect the unconnected wire in the RC circuit from Step 1 to begin charging the capacitor in the RC circuit. 
+
+5. Wait until the voltage of the capacitor no longer changes. This will mean that it has reached its charging voltage. 
+
+6. Record this as the charging voltage in the table from Step 1 of this section of the experimental procedure. \textbf{Do not disconnect any components from the circuit until instructed to do so.}
+
+\pagebreak
+\subsubsection*{\emph{Part 3: Discharge the capacitor until its voltage reaches 0}}
+\addcontentsline{toc}{subsubsection}{Discharge the capacitor until its voltage reaches 0}
+
+1. Add connecting wires and a resistor to the circuit so that it resembles the following diagram. You should now have an RC (resistor-capacitor) circuit. Do not modify the circuit in any other way. 
+
+\begin{center} \includegraphics[scale=0.25]{complete-circuit} \\ \footnotesize \end{center}
+
+2. Make sure the Vernier voltage probes are still connected to the circuit in the same place and do not connect the resistor to the circuit yet.
+
+3. Go back to the LoggerPro window and double-click anywhere on the graph to open a graph options dialogue box.
+
+4. Adjust the time scale of the graph so it is large enough so it will continue measuring the voltage until the voltage reaches 0.
+Use the following equation to calculate the number of seconds for the time scale:
+$$ \text{Data collection duration in seconds} (s) = 4 * (C * R) $$
+C is the capacitance in F and R is the resistance in $\Omega$.
+
+5. Click the green "Start" button at the top of the LoggerPro window. If you see "Waiting for trigger or data" at the top of the graph, the LoggerPro application is set-up correctly.
+
+5. Connect the resistor to the circuit. Data collection should begin immediately as the voltage drops past the trigger value.
+ 
+6. Take a screenshot or image of your graph.
+
+7. Export your data as a CSV file. Save the image of your graph and the CSV file to a USB drive, cloud storage service like Google Drive or some other storage system.
+\pagebreak
+\subsubsection*{\emph{Part 4: Repeat the experiment with different components}}
+\addcontentsline{toc}{subsubsection}{Repeat the experiment with different components}
+1. Get a new resistor and capacitor with different resistance and capacitance values.
+
+2. Repeat all of the steps in the previous two sections, "Charge the capacitor using a power supply" and "Discharge the circuit until the voltage reaches 0" with the the new resistors two more times, with new resistors and capacitors with each iteration.
+
+\pagebreak
+\section*{\centering Data}
+\addcontentsline{toc}{section}{Data}
+\subsection*{Tables}
+\addcontentsline{toc}{subsection}{Tables}
+
+
+The following tables are selected rows of the data sets that were created by LoggerPro as it recorded the voltage of each circuit in real time. The most relevant data for the purposes of our experiment is the starting data and the ending data, which is what is included in the tables.
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{||c c c ||} 
+ \hline
+Time (s) & Potential (V) & ln(V) \\ [0.5ex] 
+ \hline
+ 0 & 4.994 V & 1.608  \\ 
+ 0.02 & 4.999 V & 1.609  \\
+ 0.04 & 4.999 V & 1.609  \\ 
+ 0.06 & 4.999 V & 1.609  \\
+ 0.08 & 4.994 V & 1.608  \\ 
+ ... & ... & ... \\
+ 299.96 & 0.403 V & -0.909 \\ 
+ 299.98 & 0.403 V & -0.909 \\
+ 300 & 0.403 V & -0.909  \\ 
+ \hline
+\end{tabular}
+\caption{Circuit 1}
+\end{table}
+
+\begin{table}
+\parbox{.45\linewidth}{
+\centering
+\begin{tabular}{||ccc||}
+\hline
+Time (s) & Potential (V) & ln(V) \\ [0.5ex] 
+\hline
+ 0 & 4.994 V & 1.608  \\ 
+ 0.02 & 4.999 V & 1.609  \\
+ 0.04 & 4.999 V & 1.609  \\ 
+ 0.06 & 4.999 V & 1.609  \\
+ 0.08 & 4.994 V & 1.608  \\ 
+ ... & ... & ... \\
+ 299.96 & 0.379 V & -0.972  \\ 
+ 299.98 & 0.379 V & -0.972 \\
+ 300 & 0.379 V & -0.972  \\ 
+\hline
+\end{tabular}
+\caption{Circuit 2}
+}
+\hfill
+\parbox{.45\linewidth}{
+\centering
+\begin{tabular}{||ccc||}
+\hline
+Time (s) & Potential (V) & ln(V) \\ [0.5ex] 
+\hline
+ 0 & 4.999 V & 1.609  \\ 
+ 0.02 & 4.999 V & 1.609 \\
+ 0.04 & 4.999 V & 1.609  \\ 
+ 0.06 & 4.994 V & 1.609 \\
+ 0.08 & 4.994 V & 1.608  \\ 
+ ... &  ... & ... \\
+ 299.96 & 0.369 V & -0.998  \\ 
+ 299.98 & 0.369 V & -0.998 \\
+ 300 & 0.364 V & -1.011  \\ 
+\hline
+\end{tabular}
+\caption{Circuit 3}
+}
+\end{table}
+
+\pagebreak
+\subsection*{Graphs}
+\addcontentsline{toc}{subsection}{Graphs}
+
+For each circuit, we measured the charging voltage $V_b$, the capacitance of the capacitor $C$ and the resistance of the resistor $R$.
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{||c c c c c||}
+ \hline
+Circuit & Starting Potential $V_0$ (V) & End Potential $V_C$ & C (F) & R ($\Omega$) \\ [0.5ex] 
+ \hline\hline
+ 1 & 4.994 V & 0.403 V & 1.0 F & 98.0 \\ 
+ 2 & 4.999 V & 0.379 V & 1.0 F & 98.0 \\
+ 3 & 4.999 V & 0.364 V & 1.0 F & 98.0 \\ 
+ \hline
+\end{tabular}
+\caption{Measured values for RC circuits, Trials 1 - 3}
+\label{table:1}
+\end{table}
+
+
+The following figures are graphs of the logarithmic data generated by Logger Pro for each circuit. 
+
+\begin{center} \footnotesize \textbf{Circuit 1: Voltage vs Time} \\ \includegraphics[scale=0.15]{trial-1} \\   \end{center} 
+
+
+\begin{center} \footnotesize \textbf{Circuit 2: Voltage vs Time} \\ \includegraphics[scale=0.15]{trial-2} \\ \end{center}
+
+\begin{center} \footnotesize \textbf{Circuit 3: Voltage vs Time} \\ \includegraphics[scale=0.15]{trial-3} \\  \end{center}
+
+\pagebreak
+
+\addcontentsline{toc}{section}{Results}
+\section*{\centering Results}
+
+\subsection*{Time Constants}
+\addcontentsline{toc}{subsection}{Time Constants}
+\subsubsection*{Determining Experimental Time Constants}
+\addcontentsline{toc}{subsubsection}{Determining Experimental Time Constants}
+
+
+The LoggerPro software did not measure the voltage of the circuit until it completely discharged, so it is not an exact measurement of the time that it would take for the circuit would completely discharge until 0 V. 
+
+For each trial, the experimental amount of time in seconds required for the voltage in each RC circuit to completely discharge is:
+\begin{center}
+\textbf{Experimental Data}
+\end{center}
+\begin{table}[h!]
+\centering
+\begin{tabular}{||c c c c c c||} 
+ \hline
+\footnotesize Circuit & Start Potential ($V_0$) & End Potential ($V_C$) & R ($\Omega$) & C ($F$) & Time Elapsed (s) \\ [0.5ex] 
+ \hline
+ 1 & 4.994 V & 0.403 V & 98.0$\Omega$ & 1.0 F & 300.0 s \\ 
+ 2 & 4.994 V & 0.379 V & 98.0$\Omega$ & 1.0 F & 300.0 s  \\
+ 3 & 4.999 V & 0.364 V & 98.0$\Omega$ & 1.0 F & 300.0 s \\ 
+ \hline
+ \textbf{Average} & 4.996 V & 0.382 V & 98.0$\Omega$ & 1.0 F & 300.0 s \\
+ \hline
+\end{tabular}
+\end{table}
+
+\pagebreak
+\subsubsection*{Determining Theoretical Time Constants} 
+\addcontentsline{toc}{subsubsection}{Determining Theoretical Time Constants}
+
+\textbf{\emph{Derivation of the Time Constant of the Discharging Capacitor}}
+
+Recall the previously derived equation for the voltage of a discharging capacitor:
+$$V_C = V_0 e^{\frac{-t}{RC}}$$ 
+
+In order to get the theoretical time constant, we need to find an equation that expresses $t$ in terms of variables that we have experimentally measured.
+
+We can algebraically manipulate this equation to get an equation that describes the time elapsed $t$ in order to discharge a capacitor in an RC circuit with a given capacitance $C$ and a given resistance $R$ a particular potential difference $V_0$:
+
+\begin{align*}
+{V_C} &= V_0 e^{\frac{-t}{RC}} && \text{Voltage of a discharging capacitor.} \\
+\frac{V_C}{V_0} &= e^{\frac{-t}{RC}} && \text{Divide both sides by $V_0$} \\
+\text{ln}(\frac{V_C}{V_0}) &= \text{ln}(e^{\frac{-t}{RC}}) && \text{Take the natural logarithm of both sides.} \\
+\text{ln}(\frac{V_C}{V_0}) &= \frac{-t}{RC} && \text{The $e$ term gets cancelled out.} \\
+\frac{\text{ln}(\frac{V_C}{V_0})}{RC} &= -t && \text{Divide both sides by the product $RC$.} \\
+-\frac{\text{ln}(\frac{V_C}{V_0})}{RC} &= t && \text{Divide both sides by -1.} \\
+\end{align*}
+\begin{tcolorbox}
+\textbf{Equation for the time constant of a discharging capacitor $t$:}
+$$t = -\frac{\text{ln}(\frac{V_C}{V_0})}{RC}$$ 
+\end{tcolorbox}
+\textbf{\emph{Example Calculation of Time Constant}}
+
+For $V_C = 0.379 V$, $V_0 = 4.994 V$, $R = 98.0 \Omega$, $C = 1.0F$:
+
+\begin{align*}
+t &= -\frac{\text{ln}(\frac{(0.379 V)}{(4.994 V)})}{(98.0 F) (1.0 F)} \\
+{} &= 263.11 \text{ seconds}.
+\end{align*}
+
+Although we should be measuring the theoretical time that it takes for the capacitor to completely discharge, meaning that we should calculate the time constant $t$ using an end voltage $V_C$ of 0, because LoggerPro stopped measuring the voltage at 0.379 V, we need to use that as our end voltage instead.
+
+For each trial, the theoretical amount of time in seconds required for the voltage in each RC circuit to completely discharge is:
+\begin{center}
+\textbf{Theoretical Data}
+\end{center}
+\begin{table}[h!]
+\centering
+~\\
+\begin{tabular}{||c c c c c c||} 
+ \hline
+\footnotesize Circuit & Start Potential ($V_0$) & End Potential ($V_C$) & R ($\Omega$) & C ($F$) & Time Elapsed (s) \\ [0.5ex] 
+ \hline
+ 1 & 4.994 V & 0.403 V & 98.0$\Omega$ & 1.0 F & 256.84 s \\ 
+ 2 & 4.994 V & 0.379 V & 98.0$\Omega$ & 1.0 F & 263.11 s  \\
+ 3 & 4.999 V & 0.364 V & 98.0$\Omega$ & 1.0 F & 267.33 s \\ 
+ \hline
+ \textbf{Average} & 4.996 V & 0.382 V & 98.0$\Omega$ & 1.0 F & 262.42 s \\
+ \hline
+\end{tabular}
+\end{table}
+
+
+\subsection*{Percent Error} 
+\addcontentsline{toc}{subsection}{Percent Error}
+
+The equation for calculating percent error is:
+
+$$\%\text{ Error}=\frac{|\text{experimental value }-\text{ accepted value}|}{\text{accepted value}}\times100\%$$
+
+For the mean time constants for the experimental set of data and theoretical set of data, the percent error is:
+\begin{align*}
+\%\text{ Error of Time Constant}&=\frac{|300.00 seconds - 262.42 seconds|}{\text{262.42 seconds}}\times100\% \\
+{}&= \text{\textbf{14.31}}\%
+\end{align*}
+
+\pagebreak
+\subsection*{Experimental Uncertainty}
+\addcontentsline{toc}{subsection}{Experimental Uncertainty}
+
+\subsubsection*{Uncertainty in Measurements}
+\addcontentsline{toc}{subsubsection}{Uncertainty in Measurements}
+
+The following values are the values that were used to calculate the results of the experiment. These values were measured by hand or with tools, such as the digital multimeter or the Logger Pro software, which inherently introduces a degree of uncertainty. 
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{||c |c | p{3cm} |p{5cm}||} 
+ \hline
+Value & Uncertainty (\%) & Uncertainty Difference & Possible Sources of Uncertainty  \\ [0.5ex] 
+ \hline
+ Resistance ($\Omega$) & $\pm$ 6\% & 5.88 $\Omega$ & The manufacturer of the digital multimeter we used listed an estimated uncertainty of 6\%.\\
+ \hline
+ Capacitance (F) & $\pm$ 15\% & 0.15 F & The manufacturer of the capacitors that we used listed an estimated uncertainty of 15\%.\\
+ \hline
+ Voltage (V) & $\pm$ 8\% & 0.299 V & The manufacturer of the digital multimeter we used listed an estimated uncertainty of 6\%. An extra 2\% of uncertainty is added to account for slightly inconsistent start times in starting the data collection for voltage. \\ 
+ \hline
+ Time Constant (s) & $\pm$ 5\% & 18s & This percentage accounts for possible errors with the LoggerPro software correctly detecting the voltage trigger values.  \\ 
+ \hline
+\end{tabular}
+\end{table}
+
+
+\pagebreak
+
+\subsubsection*{Uncertainty in Calculations}
+\addcontentsline{toc}{subsubsection}{Uncertainty in Calculations}
+
+The equation used for propogating uncertainty for general functions (including logarithms) is:
+
+$$ \delta R = \sqrt{\left(\frac{\delta R}{\delta X}  \cdot{\delta}X\right)^{2} + \left(\frac{\delta R}{\delta Y}  \cdot{\delta}Y\right)^{2} + \left(\frac{\delta R}{\delta Z}  \cdot{\delta}Z\right)^{2} + ... }$$
+
+where $\delta$R is the quantity we are attempting to calculate uncertainty for. X, Y, Z, etc are the composite quantities with their own individual uncertainties that are used to calculate R.
+
+
+We need to use this equation to calculate the uncertainty of the time constant, since the equation for the time constant involves a logarithm.
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{||c |c |p{6cm}||} 
+ \hline
+Value & Uncertainty (\%) & Possible Sources of Uncertainty  \\ [0.5ex] 
+ \hline
+ Theoretical Time Constant (s) & $\pm$ 18.02\% & Propogated uncertainty using the above equation.\\
+
+ \hline
+\end{tabular}
+\end{table}
+
+
+
+\pagebreak
+
+\section*{\centering Conclusion}
+\addcontentsline{toc}{section}{Conclusion}
+
+Although the time constants obtained from our experimental data were reasonably similar to the time constant obtained from our theoretical calculations, the high amount of uncertainty due to errors in conducting our experimental procedure means we cannot make a scientifically robust comparison between the experimental time constant and the theoretical time constant. Informally, it is fair to assume that the mathematical model that we derived for measuring the time-constant required for the capacitor of a RC circuit to fully discharge is reasonably accurate.
+
+Because we used the same resistor and same capacitor for every RC circuit, we were unable to observe and infer the impact that different resistance and capacitance values might have on the time constant required for a capacitor in an RC circuit to completely discharge.
+
+Researchers interested in investigating this subject further may find interesting results by replicating this experimental procedure and using different capacitor and resistor values. 
+\pagebreak
+
+\end{document}
+
