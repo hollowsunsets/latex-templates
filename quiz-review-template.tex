@@ -1,0 +1,968 @@
+\documentclass[12pt]{article}
+
+\usepackage{fancyhdr} % For the customized heading
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[most]{tcolorbox}
+\usepackage{multicol}
+\usepackage{amsmath,amsthm,amsfonts,amssymb} % For math symbols
+\usepackage{extramarks}
+\usepackage{adjustbox}
+\usepackage{graphicx} % For adding pictures
+\usepackage{booktabs}
+\usepackage{tabu}
+\usepackage[T1]{fontenc}
+\usepackage{enumitem}
+\usepackage[parfill]{parskip}
+\usepackage{changepage}
+\usepackage{scrextend}
+\usepackage{gauss}% http://ctan.org/pkg/gauss
+\usepackage{hyperref}
+\usepackage{mathtools}
+\usepackage{calc}
+\usepackage{scrextend}
+%% Packages for APA bibliographies 
+\usepackage{apacite} % for the references page
+\usepackage{url} % for hyperlinks in references
+
+\usepackage{empheq}
+\usepackage[most]{tcolorbox}
+
+\newtcbox{\boxedeq}[1][]{%
+    nobeforeafter, math upper, tcbox raise base,
+    enhanced, colframe=black,
+    colback=white, boxrule=0.5pt,
+    #1}
+    
+\newtcolorbox[auto counter]{solution}[1][]
+{colframe=blue!20,
+	colback=white,
+	sharp corners,
+	title=Solution,
+	enhanced,
+	fontupper=\linespread{1.0}\selectfont,
+	coltitle=black,
+	fonttitle=\bfseries,
+	attach boxed title to top left={yshift*=-\tcboxedtitleheight/2, xshift=3mm},
+	boxed title style={sharp corners, colback=blue!20},
+	#1
+}
+
+
+\usepackage[makeroom]{cancel}
+
+
+\newenvironment{amatrix}[1]{
+	\left[\begin{array}{@{}*{#1}{c}|c@{}}
+}{
+		\end{array}\right]
+}
+%% BASIC DOCUMENT SETTINGS %%
+
+\graphicspath{ {./images/} } 
+
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in
+
+\linespread{1.1}
+
+\pagestyle{fancy}
+\lhead{\hmwkAuthorName}
+\chead{}
+\rhead{\hmwkTitle}
+\lfoot{\lastxmark}
+\cfoot{\thepage}
+
+\newcommand{\hmwkTitle}{\textbf{MATH 153: Chapter 11 Review}}
+\newcommand{\hmwkDueDate}{January 17, 2019}
+\newcommand{\hmwkClass}{\textbf{MATH 238 - Differential Equations}}
+\newcommand{\hmwkClassTime}{Section A}
+\newcommand{\hmwkClassInstructor}{Timothy Trammel}
+\newcommand{\hmwkAuthorName}{\textbf{Isabel Giang}}
+\newcommand{\continueNextPage}{\begin{flushright}\textit{Continued on the next page...}
+\end{flushright} \pagebreak}
+\renewcommand\headrulewidth{0.4pt}
+\renewcommand\footrulewidth{0.4pt}
+
+\setlength\parindent{0pt}
+
+
+%% TITLE PAGE SETTINGS %%
+
+\title{
+    \vspace{2in}
+    \textmd{\textbf{\hmwkTitle}}\\
+    \large\vspace{0.1in}{\hmwkClass}\\
+    \large\vspace{0.1in}{\textbf{Date: }\hmwkDueDate}\\
+    \vspace{0.1in}{\textbf{Professor: }\hmwkClassInstructor}
+    \vspace{1in}
+}
+
+\author{\hmwkAuthorName}
+\date{}
+
+\renewcommand{\vec}[1]{\mathbf{#1}}
+\renewcommand\qedsymbol{$\blacksquare$}
+\newcommand{\lintrans}{T: \mathbf{R^{m}} \rightarrow \mathbf{R^{n}}}
+\newcommand{\inftylim}[1]{\mathlarger{\lim_{n \to \infty}#1}}
+\newcommand{\smallinftylim}[1]{\lim\limits_{n \to \infty} #1}
+
+% this requires mathtools
+\DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
+% this requirese amsmath for \overset (better than \stackrel)
+\newcommand{\Heq}{\overset{\hidewidth(\mathrm{H})\hidewidth}{\Rightarrow}}
+
+%% TODO:
+% Define environment for theorems
+% Define environment for problems and solutions
+
+\usepackage{titlesec}
+ \usepackage{relsize}
+
+\titlespacing{\section}{0pt}{\parskip}{-\parskip}
+\titlespacing{\subsection}{0pt}{\parskip}{0pt}
+\titlespacing{\subsubsection}{0pt}{\parskip}{-\parskip}
+
+\begin{document}
+
+\section*{11.1 Sequences}
+\subsection*{Quiz Problems}
+Find a formula for the general term $a_n$ of the sequence, assuming that the pattern of the first few terms continues: 
+
+$$\left\lbrace 4, -1, \frac{1}{4}, -\frac{1}{16}, \frac{1}{64}, \dots \right\rbrace$$
+
+\begin{solution}
+$\mathlarger{\left\lbrace 4, -1, \frac{1}{4}, -\frac{1}{16}, \frac{1}{64}, \dots \right\rbrace}$ ~\\
+
+This sequence is in the form of a geometric series: $\sum\limits_{n=p}^{\infty} ar^n$
+
+The initial term $a$ is 4. The common ratio $r$ is $-\frac{1}{4}$.
+
+The formula for this sequence is: $a_n = \mathbf{4\left(-\frac{1}{4}\right)^{n-1}}$
+\end{solution}
+
+Determine whether the sequence converges or diverges. If it converges, find the limit.
+\begin{enumerate}[label=\alph*)]
+\item $\mathlarger{\frac{(-1)^{n}}{2\sqrt{n}}}$
+\item $\mathlarger{\ln(2n^{2} + 1) - \ln(n^{2} + 1)}$
+\end{enumerate}
+\begin{solution}
+a) $a_n = \mathlarger{\frac{(-1)^{n}}{2\sqrt{n}}} $  ~\\
+
+Try applying the following theorem: $\lim_{n \to \infty}{\left| a_n\right|} = 0  \text{ then }  \lim_{n \to \infty}{a_n} = 0$~\\
+
+$\inftylim{{\frac{(-1)^{n}}{2\sqrt{n}}}} = \inftylim{{\left| \frac{(-1)^{n}}{2\sqrt{n}}\right|}} = \inftylim{\frac{1}{2\sqrt{n}}} = 0 $ ~\\
+
+Since the limit of $a_n$ as $n \to \infty$ converges to 0, we can apply this theorem. The sequence is \textbf{convergent.}
+\end{solution}
+
+\begin{solution}
+b) $a_n = \mathlarger{\ln(2n^{2} + 1) - \ln(n^{2} + 1)}$  ~\\
+
+This sequence can be written using logarithm properties: $\ln(a) - \ln(b) = \ln(\frac{a}{b}) $
+
+$a_n =  \mathlarger{\ln(2n^{2} + 1) - \ln(n^{2} + 1)} = \mathlarger{\ln\left(\frac{2n^{2} + 1}{n^{2} + 1}\right)}$ ~\\
+
+$\inftylim{\ln\left(\frac{2n^{2} + 1}{n^{2} + 1}\right)} = \ln\left(\inftylim{\frac{2n^{2} + 1}{n^{2} + 1}}\right) 
+= \ln \left(\inftylim{\frac{
+				\frac{2n^{2}}{n^2} + \frac{1}{n^2}}
+				{
+				\frac{n^{2}}{n^2} + \frac{1}{n^2}}
+			}\right) = \ln \left(\frac{2 + 0}{1 + 0}\right) = \ln(2) $ ~\\
+
+Since $\inftylim{a_n}$ exists, the sequence is \textbf{convergent.}
+\end{solution}
+Decide whether the sequence is convergent or divergent. If the sequence is convergent, find the value of the limit.
+$$ a_n = \frac{1 \cdot 3 \cdot 5 \cdot \dots (2n - 1)}{(2n)^{n}}$$
+\begin{solution}
+$\mathlarger{a_n = \frac{1 \cdot 3 \cdot 5 \cdot \dots (2n - 1)}{(2n)^{n}}}$ ~\\
+
+If we look at the first few values of the sequence, we can see it is decreasing: 
+
+$a_1 = \frac{1}{(2 \cdot 1)^{1}} = \frac{1}{2}, a_2 = \frac{1 \cdot 3}{(2 \cdot 2)^{2}} = \frac{3}{16}, a_3 = \frac{1 \cdot 3 \cdot 5}{(2 \cdot 3)^{3}} = \frac{5}{72}$ ~\\
+
+To evaluate the limit of this sequence, we need to know that the product of the first $n$ positive odd integers can be written as $\mathlarger{\frac{(2n)!}{2^{n} \cdot {n!}}}$. ~\\
+
+$\inftylim{a_n} = \inftylim{\frac{1 \cdot 3 \cdot 5 \cdot \dots (2n - 1)}{(2n)^{n}}} = \inftylim{ \frac{\frac{(2n)!}{2^{n} \cdot {n!}}}{(2n)^{n}}} = \inftylim{{\frac{(2n)!}{(2n)^{n} (2^{n} \cdot n!)}}}$ ~\\
+
+$\inftylim{{\frac{(2n)!}{(2n)^{n} (2^{n} \cdot n!)}}} = \left(\inftylim{\frac{1}{2^{n} n!}}\right)\left(\inftylim{\frac{(2n)!}{(2n)^{n}}}\right) $
+
+
+Evaluate $\inftylim{\frac{(2n)!}{(2n)^{n}}}$ separately:
+\begin{align*}
+\smallinftylim{\frac{(2n)!}{(2n)^{n}}} &= \smallinftylim{\frac{1 \cdot 2 \cdot 3 \cdot ... \cdot (2n)}{(2n) \cdot (2n) \cdot (2n) \cdot (2n) \dots \cdot(2n)} } \\
+&= \smallinftylim{\frac{1}{2n} \cdot \frac{2}{2n} \cdot \frac{3}{2n} \cdot \dots \frac{2n}{2n}}  \\
+&= 0 \cdot 0 \cdot 0 \cdot \dots \cdot 1
+\end{align*}
+$ \left(\inftylim{\frac{1}{2^{n} n!}}\right)\left(\inftylim{\frac{(2n)!}{(2n)^{n}}}\right) = 0 \cdot 0 = 0.$ Thus, the sequence \textbf{converges to 0}.
+\end{solution} 
+
+\pagebreak
+
+\section*{11.2 Series} 
+\subsection*{Quiz Questions}
+Determine whether the series is convergent or divergent. If it is convergent, find its sum.
+\begin{enumerate}[label=\alph*)]
+\item $\mathlarger{\sum\limits_{k=1}^{\infty} (\sin(100))^{k}}$
+\item $\mathlarger{\sum\limits_{n=1}^{\infty} (e^{1/n} - e^{1/{n+1}})}$
+\end{enumerate}
+
+\begin{solution}
+a) $\mathlarger{\sum\limits_{k=1}^{\infty} (\sin(100)))^{k}}$ ~\\
+
+This is a geometric series:
+$\mathlarger{\sum\limits_{k=1}^{\infty} (\sin(100))^{k}} = \mathlarger{\sum\limits_{k=0}^{\infty} \sin(100)(\sin(100)^{k-1}}$ 
+
+
+The initial term $a$ is $\sin(100)$.
+The common ratio $r$ is $\sin(100)$. ~\\
+
+A geometric series is convergent if $|r| < 1.$
+
+Since $|\sin(100)| < 1$, this series is \textbf{convergent}. ~\\
+
+The sum of a convergent geometric series is $\frac{a}{1 - r} = \frac{\sin(100)}{1 - \sin(100)} \approx \mathbf{64.82304782}$ 
+\end{solution}
+
+\begin{solution}
+b) $\mathlarger{\sum\limits_{n=1}^{\infty} (e^{1/n} - e^{1/{n+1}})}$ ~\\
+
+This seems like it is a telescoping series, but we cannot be sure unless we write it out term-by-term. ~\\
+
+$\mathlarger{\sum\limits_{n=1}^{\infty} (e^{1/n} - e^{1/{n+1}})} = (e^{\frac{1}{1}} - e^{\frac{1}{2}}) + (e^{\frac{1}{2}} - e^{\frac{1}{3}}) + \dots +  (e^{\frac{1}{n-1}} - e^{\frac{1}{n}}) + (e^{\frac{1}{n}} - e^{\frac{1}{n+1}})$
+
+$ \qquad \qquad \qquad \qquad = (e^{\frac{1}{1}} - \cancel{e^{\frac{1}{2}}}) + (\cancel{e^{\frac{1}{2}}}  - \bcancel{e^{\frac{1}{3}}}) + \dots +  (\bcancel{e^{\frac{1}{n-1}}} - \cancel{e^{\frac{1}{n}}}) + (\cancel{e^{\frac{1}{n}}} - e^{\frac{1}{n+1}})$
+
+$ \qquad \qquad \qquad \qquad = e^{\frac{1}{1}} - e^{\frac{1}{n+1}} = e - e^{\frac{1}{n + 1}} = S_n$ ~\\
+
+The sum of the series is the limit of the partial sum $S_n$.~\\
+
+$\inftylim{S_n} = \inftylim{e - e^{\frac{1}{n+1}}} = e - e^{0} = \mathbf{e - 1}$ ~\\
+
+The limit of the partial sum exists, so the series is \textbf{convergent}.
+
+\end{solution}
+
+
+Express the given number as a ratio of integers.
+$$2.516 = 2.516516516516\dots$$
+\begin{solution}
+$2.516 = 2.516516516516\dots$ ~\\
+
+We can write irrational numbers of this form as a geometric series, since the decimal part of the number can be understood as a sum of a sequence of partial sums: ~\\
+
+$2.516 = 2.000 + 0.516 + 0.000516 + 0.000000516 + \dots$
+
+The initial term is $0.516$. The common ratio is $0.001$. 
+
+$$2 + \sum^{\infty}_{n=0} (0.516)(0.001)^{n-1} = 2 + \frac{0.516}{1 - 0.001} = 2 + \frac{173}{333} = \mathbf{\frac{838}{333}}$$
+
+
+
+\end{solution}
+Find the value of $c$ if $\sum^{\infty}_{n=2} (1 + c)^{-n} = 2$:
+
+\begin{solution}
+$$\sum^{\infty}_{n=2} (1 + c)^{-n} = \sum^{\infty}_{n=2} \frac{1}{(1 + c)^n}$$
+
+This is a geometric series with initial term $a= \frac{1}{(1 + c)^{2}}$ and common ratio $r = \frac{1}{1 + c}$
+
+We know that the sum of a convergent geometric series is $\frac{a}{1 - r}$ and that it must be $2$.
+$$ \frac{a}{1 - r} \mathlarger{\Rightarrow \frac{\frac{1}{(1 + c)^{2}}}{1 - \frac{1}{(1 + c)}} \Rightarrow \frac{\frac{1}{(1 + c)^{2}}}{\frac{\cancel{1} + c}{1 + c} - \frac{\cancel{1}}{(1 + c)}} \Rightarrow  \frac{\frac{1}{(1 + c)^{2}}}{\frac{c}{1 + c}}} \Rightarrow \frac{1}{(1 + c)^{\cancel{2}}} \cdot \frac{ \cancel{1 + c} }{c} \Rightarrow \frac{1}{c^2 + c}$$
+
+Set this expression equal to 2 and solve for $c$:
+$$ \frac{1}{c^2 + c} = 2 \Rightarrow c^2 + c - 1 = 0$$
+
+We can use the quadratic formula to solve for $c$.
+
+$$ c = \frac{2 \pm \sqrt{(2)^2 - 4 \cdot (2) \cdot (-1)}}{2 \cdot 2} = \frac{2 \pm \sqrt{4 + 8 }}{4} = \frac{2 \pm \sqrt{12}}{4}  = \frac{1 \pm \sqrt{3}}{2}$$
+
+In order for the series to converge, we need $\left| r \right| = \left|1 + c \right| < 1$ 
+
+
+Thus, we only need the negative value.
+
+$$\mathbf{c = \frac{-1 - \sqrt{3}}{2}}$$
+\end{solution}
+
+
+
+\pagebreak 
+\section*{11.3 Integral Test} 
+
+\subsection*{Quiz Questions}
+
+Use the Integral Test to determine whether the series is convergent or divergent.
+\begin{enumerate}[label=\alph*)]
+\item $\mathlarger{\sum_{n=1}^{\infty} \frac{2}{5n - 1}}$
+\item $\mathlarger{\sum_{n=1}^{\infty} n^2e^{-n^3}}$
+\end{enumerate}
+\begin{solution}
+$\mathlarger{\sum_{n=1}^{\infty} \frac{2}{5n - 1}}$~\\
+
+Before applying the Integral Test, generally, we need to check if the expression is positive, continuous and monotonically decreasing.
+The function $f(x) = \frac{2}{5x - 1}$ is clearly positive and decreasing for all values of $x$ greater than 1, so we can apply the Integral Test.
+$$\int^{\infty}_1 \frac{2}{5x - 1} \text{ }dx  = \lim_{t \to \infty} \left[ \frac{2}{5} \ln  \left|5x - 1 \right| \right]_1^t = \lim_{t \to \infty} \frac{2}{5} \ln \left|5t - 1 \right| - \frac{2}{5} \ln 4 = \infty - \frac{2}{5} \ln 4 $$
+
+The improper integral of the function is divergent, so the series is also \textbf{divergent.}
+\end{solution}
+
+\begin{solution}
+$\mathlarger{\sum_{n=1}^{\infty} n^2e^{-n^3}}$
+
+Before applying the Integral Test, we need to check if the function $f(x) = x^{2}e^{-x^{3}}$ is positive, continuous and monotonically decreasing.
+
+It isn't clear if this function is decreasing.
+Apply the Quotient Rule to calculate the derivative:
+$$f'(x) = \frac{2xe^{x^3} - x^23x^2e^{x^3}}{(e^{x^3}) ^2}  = \frac{2x - 3x^4}{(e^{x^3})}$$
+This function is decreasing after $x = 1$, so we can apply the Integral Test.
+$$\int^{\infty}_1 x^2e^{-x^3} \text{ }dx = \lim_{t \to \infty} \int^{t}_1 x^2e^{-x^3} \text{ } dx
+= \lim_{t \to \infty} \int^{-t^3}_{-1} \cancel{x^2}e^{u} \text{ } -\frac{du}{3\cancel{x^{2}}}
+$$
+$$\lim_{t \to \infty} -\frac{1}{3}\int^{-t^3}_{-1} e^{u} \text{ } du = -\frac{1}{3}\lim_{t \to \infty} e^{u} \text{ } du = \frac{1}{3e}$$
+
+The improper integral is clearly convergent, so the series is also \textbf{convergent.}
+
+\end{solution}
+\pagebreak
+Determine whether the series is convergent or divergent.
+\begin{enumerate}[label=\alph*)]
+\item $\mathlarger{\sum_{n=1}^{\infty} \frac{\sqrt{n} + 4}{n^2}}$
+\item $\mathlarger{\sum_{n=1}^{\infty} \frac{3n - 4}{n^2 - 2n}}$
+\end{enumerate}
+
+\begin{solution}
+$\mathlarger{\sum_{n=1}^{\infty} \frac{\sqrt{n} + 4}{n^2}}$~\\
+
+This series is easier to evaluate if we split the expression into two series.
+
+$\mathlarger{\sum_{n=1}^{\infty} \frac{\sqrt{n} + 4}{n^2} = \sum_{n=1}^{\infty} \frac{\sqrt{n}}{n^2} + \sum_{n=1}^{\infty} \frac{4}{n^2}}$
+
+\begin{addmargin}[1em]{2em}
+$\mathlarger{\sum_{n=1}^{\infty} \frac{\sqrt{4}}{{n^2}}}$ is a p-series with $p = 2$. This is a convergent p-series since $p > 1$. ~\\
+
+$\mathlarger{\sum_{n=1}^{\infty} \frac{\sqrt{n}}{n^2} = \sum_{n=1}^{\infty} \frac{1}{n^{2 - \frac{1}{2}}} = \sum_{n=1}^{\infty} \frac{1}{n^{\frac{3}{2}} }}$ is a p-series with $p = \frac{3}{2}$. This is a convergent p-series since $p > 1$.
+\end{addmargin} ~\\
+Since both of the series are convergent, overall, the series is \textbf{convergent.}
+\end{solution}
+
+
+\begin{solution}
+$\mathlarger{\sum_{n=1}^{\infty} \frac{3n - 4}{n^2 - 2n}}$
+
+We can evaluate whether or not this series is convergent in multiple different ways. ~\\
+
+If we want to apply the \textbf{Integral Test} we need to evaluate if the function $f(x) = \frac{3x - 4}{x^2 - 2x}$ is positive, continuous and monotonically decreasing.
+
+\begin{enumerate}[label=$\bullet$]
+\item $f(x) = \mathlarger{\frac{3x - 4}{x^2 - 2x}}$ is \textbf{discontinuous at $x = 0, 2$} since we can factor the denominator into $x(x - 2)$ and see that it will be 0 at those values of $x$. So we will determine the convergence of the series starting at $x = 3$. ~\\
+\item $f(x) = \mathlarger{\frac{3x - 4}{x^2 - 2x}}$ is \textbf{positive} when $x$ is larger than $3$. ~\\
+\item $\mathlarger{f'(x) = \frac{(3) \cdot (x^2 - 2x) - (3x - 4)\cdot (2x - 2)}{(x^2 - 2x)^2} = \frac{(3x^2 - 6x) - (6x^2 - 6x - 8x + 8)}{(x^2 -2x)^2}}$ is a \textbf{decreasing} function when $x \geq 3$ since the denominator will always have a greater power than the numerator.
+\end{enumerate}~\\
+Thus we can apply the Integral Test.
+
+To apply the Integral Test, we need to use partial fraction decomposition to get the function into an easily integrable form. 
+
+$$\int^{\infty}_3 \frac{3x - 4}{x^2 - 2x} \text{ } dx = \int^{\infty}_3 \frac{2}{x} + \frac{1}{x - 2} \text { } dx\\ = \lim_{t \to \infty} \left[ 2 \ln|x| + \ln|x - 2| \right]^{t}_3$$
+
+The sum will clearly be divergent as $t \to \infty$ so we can say that the series will by \textbf{divergent.} ~\\
+
+We can also recognize that the series can be easily compared to a smaller divergent p-series.
+
+
+
+
+
+\end{solution}
+\pagebreak
+Find the values of $p$ for which the p-series is convergent.
+$$\mathlarger{\sum_{n=2}^{\infty} \frac{1}{n(\ln n)^p}}$$
+
+\begin{solution}
+$\mathlarger{\sum_{n=2}^{\infty} \frac{1}{n(\ln n)^p}}$
+
+We can find the values of $p$ that we need by applying the Integral Test and seeing where the resulting integrand will converge.
+
+
+If $p > 1$:
+\begin{align*}
+\sum_{n=2}^{\infty} \frac{1}{n(\ln n)^p} \Rightarrow \int^{\infty}_2 \frac{1}{x(\ln x)^{p}} \text{ } dx & = \left[ \frac{1}{(1 - p)(\ln x)^{p -1}} \right]^{\infty}_2 \\
+&= \frac{1}{(1 - p)(\ln \infty)^{p - 1}} - \frac{1}{(1 - p)(\ln 2)^{p - 1}} \\
+&= \frac{1}{-\infty} - \frac{1}{(1 - p)(\ln 2)^{p - 1}} \\
+&= 0 - - \frac{1}{(1 - p)(\ln 2)^{p - 1}} 
+\end{align*} Thus the series is \textbf{convergent when $p > 1$.}  The exponentiated term remains in the denominator since the exponent will still be negative.  ~\\
+
+If $p < 1$:
+\begin{align*}
+\sum_{n=2}^{\infty} \frac{1}{n(\ln n)^p} \Rightarrow \int^{\infty}_2 \frac{1}{x(\ln x)^{p}} \text{ } dx & = \left[ \frac{1}{(1 - p)}(\ln x)^{-(p - 1)} \right]^{\infty}_2 \\
+&= \frac{1}{(1 - p)}(\ln \infty)^{1 - p} - \frac{1}{(1 - p)}(\ln 2)^{1 - p}  \\
+&= \infty - \frac{1}{(1 - p)}(\ln 2)^{1 - p}
+\end{align*} 
+
+Thus the series is \textbf{divergent when $p < 1$.} The exponentiated term is moved to the numerator and converges to $\infty$ instead of $0$. 
+
+If $p = 1$:
+\begin{align*}
+\sum_{n=2}^{\infty} \frac{1}{n(\ln n)^p} \Rightarrow \int^{\infty}_2 \frac{1}{x(\ln x)} \text{ } dx & = \left[ \ln(\ln|x|) \right]^{\infty}_2 \\
+&= \ln(\ln|\infty|) - \ln(\ln|2|) 
+\end{align*} 
+Thus the series is \textbf{divergent when $p = 1$}.
+\end{solution}
+
+
+\pagebreak
+\section*{11.4 The Comparison Tests}
+
+\subsection*{Quiz Questions}
+
+
+Determine whether the series converges or diverges.
+\begin{enumerate}[label=\alph*)]
+\item $\mathlarger{\sum_{n=1}^{\infty} \frac{9^n}{10^n + 3}}$
+\item $\mathlarger{\sum_{n=1}^{\infty} \frac{4^{n + 1}}{3^n - 2}}$
+\item $\mathlarger{\sum_{n=1}^{\infty} \frac{n \sin^2 n}{n^3 + 1}}$
+\item $\mathlarger{\sum_{n=1}^{\infty} \frac{n!}{n^n}}$
+\end{enumerate}
+
+\begin{solution}
+$\mathlarger{\sum_{n=1}^{\infty} \frac{9^n}{10^n + 3}}$
+
+This series evaluated using the Comparison Test - specifically by being compared with a geometric series.~\\
+
+$\mathlarger{\sum_{n=1}^{\infty} \frac{9^n}{10^n + 3} \leq \sum_{n=1}^{\infty} \frac{9^n}{10^n}} $ since the second series has a smaller denominator.
+
+$\mathlarger{\sum_{n=1}^{\infty} \frac{9^n}{10^n} = \sum_{n=1}^{\infty} \left(\frac{9}{10}\right)^{n} = \sum_{n=1}^{\infty} \left(\frac{9}{10}\right) \left(\frac{9}{10}\right)^{n -1}} $ which is a convergent geometric series.
+
+This series has an initial term $a = \frac{9}{10}$ and a common ratio $r = \frac{9}{10}$. 
+
+Since $\left| \frac{9}{10} \right| < 1$, this is a convergent geometric series.~\\
+
+By the Comparison Test, if a series is found to be smaller than another convergent series, both series are convergent by the Comparison Test. This was found to be the case, so the series \textbf{is convergent.}
+
+\end{solution}
+
+\begin{solution}
+$\mathlarger{\sum_{n=1}^{\infty} \frac{4^{n + 1}}{3^n - 2}}$ ~\\
+
+This is another series that can be evaluted using the Comparison Test by comparing with a geometric series.
+
+$\mathlarger{\sum_{n=1}^{\infty} \frac{4^{n + 1}}{3^n - 2} \geq \sum_{n=1}^{\infty} \frac{4^{n}}{3^n} =  \sum_{n=1}^{\infty} \left(\frac{4}{3} \right)^{n}}$ 
+
+The numerator of the second series is smaller $(4^{n +1} \geq 4^{n}$, and the denominator of the second series is larger $[(3^{n} - 2) \leq 3^{n}].$
+
+The second series is a divergent geometric series since $\left| \frac{4}{3} \right| \nless 1$. 
+
+By the Comparison Test, if a series is found to be larger than a smaller divergent series, both series are divergent. This is the case, so the series \textbf{is divergent.}
+\end{solution}
+
+\begin{solution}
+$\mathlarger{\sum_{n=1}^{\infty} \frac{n \sin^{2}{n}}{n^3 + 1}}$ 
+
+This series is a good candidate for the Comparison Test. In order to properly apply the test, we need to recognize that $-1 \leq \sin^2{n} \leq 1$. 
+
+Thus, we can say that:
+$\mathlarger{\sum_{n=1}^{\infty} \frac{n \sin^2{n}}{1 + n^3} \leq \sum_{n=1}^{\infty} \frac{n}{1 + n^3}} < \sum_{n=1}^{\infty} \frac{n}{n^3}$
+
+Notice that $\mathlarger{\sum_{n=1}^{\infty} \frac{n}{n^3} = \sum_{n=1}^{\infty} \frac{1}{n^2}}$ which is a convergent p-series with $p = 2$.
+
+Since this is a convergent series larger than the given series, we can say by the Comparison test that the given series \textbf{is convergent.}
+\end{solution}
+
+\begin{solution}
+$\mathlarger{\sum_{n=1}^{\infty} \frac{n!}{n^{n}}}$
+
+The most straightforward way to evaluate the convergence of this series is by applying the Ratio Test, but we can also use the Comparison Test.
+
+$$\sum_{n=1}^{\infty} \frac{n!}{n^{n}} = \frac{1 \cdot 2 \cdot 3 \cdot \dots \cdot (n-1) \cdot n }{n \cdot n \cdot n \cdot \dots \cdot n \cdot n}$$ 
+
+$$\sum_{n=1}^{\infty} \frac{2}{n^{n}} = \frac{2 \cdot 2 \cdot 2  \cdot \dots \cdot 2 \cdot 2}{n \cdot n \cdot n \cdot \dots \cdot n \cdot n}$$
+
+So, $\mathlarger{\sum_{n=1}^{\infty} \frac{n!}{n^{n}} \leq \sum_{n=1}^{\infty} \leq \frac{2}{n^{n}} \leq \sum_{n=1}^{\infty} \frac{2}{n^2}}$.
+
+This is because the numerator of $\sum_{n=1}^{\infty} \frac{2}{n^{n}}$ is larger than the given series, and the denominator of $\sum_{n=1}^{\infty} \frac{2}{n^{2}}$ is smaller than the denominator of $\sum_{n=1}^{\infty} \frac{2}{n^{n}}$ when $n \geq 4$.
+
+$\mathlarger{\sum_{n=1}^{\infty} \frac{2}{n^2}}$ is a convergent p-series since $p = 2 > 1$. ~\\
+
+Since we've found a convergent series that is larger than the given series, by the Comparison Test, we know that the given series \textbf{is convergent.}
+\end{solution}
+
+
+\pagebreak
+\section*{11.5 Alternating Series}
+
+\subsection*{Quiz Questions}
+Test the series for convergent or divergence.
+\begin{enumerate}[label=\alph*)]
+\item $\mathlarger{-\frac{2}{5} + \frac{4}{6} - \frac{6}{7} + \frac{8}{8} - \frac{10}{9} ...}$
+\item $\mathlarger{\sum^{\infty}_{n=1} (-1)^n \frac{3n - 1}{2n + 1}}$
+\item $\mathlarger{\sum^{\infty}_{n=1} (-1)^{n +1} \frac{n^2}{n^3 + 4}}$ 
+\end{enumerate} 
+\begin{solution}
+
+$\mathlarger{-\frac{2}{5} + \frac{4}{6} - \frac{6}{7} + \frac{8}{8} - \frac{10}{9} ...}$
+
+We can write the formula as $\mathlarger{\sum_{n=1}^{\infty} (-1)^{n}\frac{2n}{4 + n}}$.
+
+Now we can try to apply the Alternating Series Test.~\\
+
+Recall that for a series $\sum_{n=1}^{\infty} a_n$ the Alternating Series Test requires that:
+\begin{enumerate}[label=(\roman{enumi})]
+\item $\left| a_n \right| > \left| a_{n + 1} \right|$, such that the series is monotonically decreasing
+\item $\inftylim{ \left| a_n \right|} = 0$
+\end{enumerate} ~\\
+
+(i) Check if the series is monotonically decreasing:
+
+$\mathlarger{f(x) = \frac{2x}{x + 4}}$, $\mathlarger{f'(x) = \frac{(2) \cdot (x + 4) - (2x) \cdot (1)}{(x + 4)^2}} = \frac{8}{(x + 4)^2}$
+
+The derivative is clearly increasing, so we cannot apply the Alternating Series Test in this case. ~\\
+
+Instead, try the Divergence Test:
+$$\lim_{n \to \infty} (-1)^{n} \frac{2n}{n + 4} = \lim_{n \to \infty}(-1)^{n} 2 \Rightarrow DNE$$
+
+Since $\lim_{n \to \infty} a_n$ does not exist, by the Divergence Test, the series is \textbf{divergent.}
+\end{solution}
+
+
+\begin{solution}
+$\mathlarger{\sum^{\infty}_{n=1} (-1)^n \frac{3n - 1}{2n + 1}}$
+
+We can try applying the Alternating Series Test.
+
+
+
+(ii) Check if $\lim_{n \to \infty} \left| a_n \right| = 0$:
+
+We check this condition first since it's clear that $\lim_{n \to \infty} \left| a_n\right|$ does not equal 0. We can't apply the Alternating Series Test in this case.~\\
+
+Instead, we will try the Divergence Test.
+
+$$\lim_{n \to \infty} (-1)^n \frac{3n - 1}{2n + 1} \Rightarrow \lim_{n \to \infty} \left| \frac{3n - 1}{2n + 1} \right| = \frac{3}{2} \neq 0 $$
+
+Since $\lim_{n \to \infty} a_n$ does not exist, by the Divergence Test, the series is \textbf{divergent.} 
+\end{solution}
+
+\begin{solution}
+$\mathlarger{\sum^{\infty}_{n=1} (-1)^{n +1} \frac{n^2}{n^3 + 4}}$ 
+
+We can try to apply the Alternating Series Test since this is an alternating series.
+
+
+(i) Check if the series is monotonically decreasing:
+\begin{align*} f(x) = \frac{x^2}{x^3 + 4} \Rightarrow f'(x) &= \frac{(2x)(x^{3} + 4) - (3x^{2})(x^2)}{(x^3 + 4)^2} \\
+&= \frac{(\cancel{2x^4} + 8x) - (\cancel{3}x^4)}{(x^3 + 4)^2} \\
+&= \frac{8x - x^4}{(x^3 + 4)^2} \\
+&= \frac{x(8 - x^3)}{(x^3 + 4)^2}
+\end{align*}
+
+The derivative $f'(x)$ is decreasing when x > 2, since the numerator will become negative after that point. ~\\
+
+(ii) Check if $\lim_{n \to \infty} \left| a_n \right| = 0$: 
+
+$\inftylim{\frac{n^2}{n^3 + 4}} = \inftylim{\frac{\frac{n^2}{n^3}}{\frac{n^3}{n^3} + \frac{4}{n^3}}} = \inftylim{\frac{\frac{1}{n}}{1+ \frac{4}{n^3}}} = \frac{0}{1 + 0} = 0$
+
+Both conditions of the Alternating Series Test are satisfied, so we can say that the series is \textbf{convergent.}
+
+\end{solution}
+
+\section*{11.6 Absolute Convergence, Ratio/Root Test}
+\subsection*{Quiz Questions}
+Use the Ratio Test to determine whether the series is convergent or divergent.
+\begin{enumerate}[label=\alph*)]
+\item $\mathlarger{\sum^{\infty}_{n=1} (-1)^{n-1} \frac{3^n}{2^n n^3}}$
+\item $\mathlarger{\sum^{\infty}_{n=1} \frac{2 \cdot 4 \cdot 6 \cdot \dots \cdot (2n)}{n!}}$
+\end{enumerate}
+
+\begin{solution}
+$\mathlarger{\sum^{\infty}_{n=1} (-1)^{n-1} \frac{3^n}{2^n n^3}}$ ~\\
+
+We can straightforwardly apply the Ratio Test. We can recognize that this is a good candidate for the Ratio Test because it has terms that are raised to the power of $n$. ~\\
+
+$\inftylim{ \left|  \frac{3^{n + 1}}{2^{n + 1}(n + 1)^{3}} \frac{2^{n}n^{3}}{3^{n}} \right|   } = \inftylim{ \left|  \frac{3^{\cancel{n + }1}}{2^{\cancel{n + }1}(n + 1)^{3}} \frac{\cancel{2^{n}}n^{3}}{\cancel{3^{n}}} \right|   } = \inftylim{ \left| \frac{3n^3}{2(n + 1)^3} \right| }$
+
+$\inftylim{ \left| \frac{3n^3}{2(n + 1)^3} \right| } = \inftylim{ \left| \frac{3}{2} \left(\frac{n}{n + 1}\right)^{3} \right| } = \frac{3}{2} \inftylim{ \left|  \left(\frac{n}{n + 1}\right) \right|^{3} = \frac{3}{2} }$
+
+Since the limit's value $\frac{3}{2} > 1$, the series is \textbf{divergent.}
+
+\end{solution}
+
+\begin{solution}
+$\mathlarger{\sum^{\infty}_{n=1} \frac{2 \cdot 4 \cdot 6 \cdot \dots \cdot (2n)}{n!}}$ ~\\
+
+This series is a good candidate for the Ratio Test because of the factorial in the denominator.~\\
+
+
+$\smallinftylim{ \left|  \frac{2 \cdot 4 \cdot 6 \cdot \dots \cdot (2n)(2(n + 1))}{(n + 1)!} \frac{n!}{2 \cdot 4 \cdot 6 \cdot \dots \cdot (2n)} \right|   } = \smallinftylim{ \left|  \frac{\cancel{2 \cdot 4 \cdot 6 \cdot \dots \cdot (2n)}(2n + 2)}{(n + 1)(\cancel{n!})} \frac{\cancel{n!}}{\cancel{2 \cdot 4 \cdot 6 \cdot \dots \cdot (2n)}} \right|}$ 
+
+$ \Rightarrow \smallinftylim{ \left|  \frac{\cancel{2 \cdot 4 \cdot 6 \cdot \dots \cdot (2n)}(2n + 2)}{(n + 1)(\cancel{n!})} \frac{\cancel{n!}}{\cancel{2 \cdot 4 \cdot 6 \cdot \dots \cdot (2n)}} \right|} = \smallinftylim{ \left| \frac{(2n + 2)}{(n + 1)} \right|} = 2$ ~\\
+
+Since the limit's value $2 > 1$, the series is \textbf{divergent}.
+\end{solution}
+\pagebreak 
+Use the Root Test to determine whether the series is convergent or divergent.
+
+$$\sum^{\infty}_{n=1} \left(1 + \frac{1}{n}\right)^{n^2}$$
+
+
+\begin{solution}
+$\mathlarger{\sum^{\infty}_{n=1} \left(1 + \frac{1}{n}\right)^{n^2}}$
+
+This is a good candidate for the Root Test because the entire term is raised to an nth power.
+
+$\lim\limits_{n \to \infty} \sqrt[n]{\abs{ \left(1 + \dfrac{1}{n}\right)^{n^2}} } = \lim\limits_{n \to \infty} \sqrt[n]{ \left(1 + \dfrac{1}{n}\right)^{n^2}} = \lim\limits_{n \to \infty} \left(1 + \dfrac{1}{n}\right)^{\dfrac{n^2}{n}} = \lim\limits_{n \to \infty} \left(1 + \dfrac{1}{n}\right)^{n} = e$
+
+Since the value of the limit $e > 1$, the series is \textbf{divergent.}
+\end{solution}
+Use any test to determine if the series is absolutely convergent, conditionally convergent or divergent.
+$$\sum^{\infty}_{n=2} \left(\frac{n}{\ln n}\right)^{n}$$
+\begin{solution}
+$\mathlarger{\sum^{\infty}_{n=2} \left(\frac{n}{\ln n}\right)^{n}}$
+
+We can apply the Root Test:
+
+$\inftylim{ \sqrt[n]{\left(\frac{n}{\ln n}\right)^{n}}} = \inftylim{ \left(\frac{n}{\ln n}\right)^{n}} = \inftylim{\frac{n}{\ln n}} = \frac{\infty}{\infty}$ ~\\
+
+This is an indeterminate form so we can apply L'Hopital's Rule: ~\\
+
+$\inftylim{ \frac{n}{\ln n}} \Heq \inftylim{\frac{1}{\frac{1}{n}}} = \inftylim{n} = \infty$
+
+Since the limit's value is $\infty$, by the Root Test, the series is \textbf{divergent}.
+
+\end{solution}
+\pagebreak
+The terms of a series are defined recursively by the equations $$a_1 = 2, a_{n+1} = \frac{5n + 1}{4n + 3} a_n$$
+
+Determine whether the series $\sum^{\infty}_{n=1} a_n$ converges or diverges.
+
+\begin{solution}
+We can determine if the series is convergent by applying the Root Test. This is simple since all we need is $a_n$ and $a_{n + 1}$, which we are given.
+
+$\inftylim{ \left| \frac{a_{n+1}}{a_n}  \right|} = \inftylim{\left| \frac{\frac{5n + 1}{4n + 1}\cancel{a_n}}{\cancel{a_n}} \right|} = \inftylim{\left|\frac{5n + 1}{4n + 1}\right|} = \frac{5}{4}$
+
+
+Since the limit's value $\frac{5}{4} > 1$, the limit is \textbf{divergent.}
+\end{solution}
+
+
+
+\pagebreak
+
+\section*{11.8 Power Series}
+
+\subsection*{Quiz Problems}
+Find the radius of convergence and the interval of convergence of the series.
+
+a) $\mathlarger{\sum_{n=2}^{\infty} \frac{b^{n}(x-a)^{n}}{\ln(n)}},  b > 0$
+
+\begin{solution}
+a) $\mathlarger{\sum_{n=2}^{\infty} \frac{b^{n}(x-a)^{n}}{\ln(n)}}, b > 0$
+
+Since most of the terms in this series are raised to a power of $n$, the Root Test may work for this series. Note that $b$ in the series is a nonzero constant. ~\\
+
+$ \inftylim{\sqrt[n]{\left| \frac{b^{n}}{\ln n}(x - a)^{n} \right| }  } = \inftylim{ \left| \frac{b}{(\ln n)^{1/n}}(x - a) \right|}$ ~\\
+
+Evaluate the limit in the denominator $\lim_{n \to \infty} (\ln n)^{1/n} $ separately:~\\
+
+\begin{addmargin}[1em]{2em}
+$\mathlarger{y = \lim_{n \to \infty} (\ln n)^{1/n} \rightarrow \ln y = \lim_{n \to \infty}\ln\left((\ln n)^{1/n}\right)}$ 
+
+$\mathlarger{\lim_{n \to \infty}\ln\left((\ln n)^{1/n}\right) = \lim_{n \to \infty}\frac{1}{n}\ln(\ln n) = \lim_{n \to \infty}\frac{\ln(\ln n)}{n} \Heq \lim_{n \to \infty}   \frac{\frac{1}{\ln n} \cdot \frac{1}{n}}{1} = \lim_{n \to \infty}\frac{1}{n \ln n}}$
+
+
+$\mathlarger{\ln y = \lim_{n \to \infty}\frac{1}{n \ln n} = 0 \rightarrow
+e^{\ln y} = e^{0} \rightarrow 
+y = 1}$ 
+\end{addmargin} ~\\
+We can plug this value into the original limit to evaluate it.
+
+
+$ \inftylim{ \left| \frac{b}{(\ln n)^{1/n}}(x - a) \right|} = \inftylim{ \left| \frac{b}{1}(x - a) \right|} = \left|b(x - a) \right|$ ~\\
+
+Now we can solve for the radius of convergence:
+
+$ \left|b(x - a)| < 1\right| \Rightarrow \left| x - a \right| < \frac{1}{b} \Rightarrow a - \frac{1}{b} < x < a + \frac{1}{b}$ ~\\
+
+The radius of convergence $R$ is half of the width of the interval, $\mathbf{R = \frac{1}{b}}$.~\\
+
+\end{solution}
+
+\begin{solution} 
+
+a) $\mathlarger{\sum_{n=2}^{\infty} \frac{b^{n}(x-a)^{n}}{\ln(n)}}, b > 0$ continued:
+
+Check the endpoints of the interval of convergence:
+
+$x = a - \frac{1}{b}$:
+$$ \sum_{n=2}^{\infty} \frac{b^{n}}{\ln (n)}\left(\left(a - \frac{1}{b} \right)- a\right) = \sum_{n=2}^{\infty} \frac{b^{n}}{\ln(n)} \left(- \frac{1}{b} \right)^{n}  = \sum_{n=2}^{\infty} \frac{\cancel{b^{n}}}{\ln(n)} \frac{(-1)^n}{\cancel{b^n}} = \sum_{n=2}^{\infty} \frac{(-1)^n}{\ln(n)} $$
+
+
+This is an alternating series, so we can try applying the Alternating Series Test:
+
+
+(i) Check if the series is monotonically decreasing: 
+
+\begin{addmargin}[1.25em]{2em}
+The denominator is clearly larger than the numerator, so $\left| a_n \right|$ is decreasing.
+\end{addmargin}
+
+
+(ii) Check if $\lim_{n \to \infty} \left| a_n \right| = 0$:
+$\lim_{n \to \infty} \left| \frac{1}{\ln n}\right| = 0$ ~\\
+Both conditions of the AST are satisfied, so the series is \textbf{convergent at $x = a - \frac{1}{b}$.} ~\\
+
+$x = a + \frac{1}{b}$:
+$$ \sum_{n=2}^{\infty} \frac{b^{n}}{\ln (n)}\left(\left(a + \frac{1}{b} \right)- a\right) = \sum_{n=2}^{\infty} \frac{b^{n}}{\ln(n)} \left( \frac{1}{b} \right)^{n} = \sum_{n=2}^{\infty} \frac{\cancel{b^{n}}}{\ln(n)} \frac{1}{\cancel{b^n}} = \sum_{n=2}^{\infty} \frac{1}{\ln n} $$
+
+By the Comparison Test, the series is \textbf{divergent at $x = a + \frac{1}{b}$} since $\mathlarger{\sum^{\infty}_{n=2} \frac{1}{n} \geq \sum^{\infty}_{n=2} \frac{1}{\ln n}}$
+
+\textbf{Interval of convergence}: $\left[a - \frac{1}{b}, a + \frac{1}{b} \right)$ 
+
+\end{solution}
+
+b) $\mathlarger{\sum_{n=2}^{\infty} \frac{n^{2}x^{n}}{2\cdot 4 \cdot 6 \cdot ... \cdot (2n)}}$
+
+
+\begin{solution}
+b) $\mathlarger{\sum_{n=2}^{\infty} \frac{n^{2}x^{n}}{2\cdot 4 \cdot 6 \cdot ... \cdot (2n)}}$
+
+Use the Ratio Test to find the radius of convergence:
+
+$ \smallinftylim{ \left|\frac{(n + 1)^{2}x^{n + 1}}{2\cdot 4 \cdot 6 \cdot \dots \cdot (2n)(2n + 2)} \frac{2\cdot 4 \cdot 6 \cdot \dots \cdot (2n)}{n^2x^{n}} \right|} = \smallinftylim{\left|\frac{(n + 1)^{2}x^{\cancel{n +} 1}}{\cancel{2\cdot 4 \cdot 6 \cdot \dots \cdot (2n)}(2n + 2)} \frac{\cancel{2\cdot 4 \cdot 6 \cdot \dots \cdot (2n)}}{n^2\cancel{x^{n}}} \right|} = \inftylim{ \left| \frac{x(n + 1)^2}{(2n + 2)n^2} \right| } $
+
+$\inftylim{ \left| \frac{x(n + 1)^2}{(2n + 2)n^2} \right| } = \inftylim{ \left| \left(\frac{n + 1}{n}\right)^2 \frac{x}{2n + 2} \right| } = \left|0 \cdot x \right|$ 
+
+The radius of convergence is $\mathbf{R = \infty}$, and the interval of convergence $\mathbf{I = \left(-\infty, \infty \right)}$. 
+\end{solution}
+
+\pagebreak
+
+
+
+\section*{11.9 Representing Functions as Power Series}
+
+\subsection*{Quiz Questions}
+
+Express the functions as the sum of a power series by first using partial fractions. Then find the interval of convergence.
+$$ f(x) = \frac{2x + 3}{x^2+3x+2} $$
+
+\begin{solution}
+$$ f(x) = \frac{2x + 3}{x^2 + 3x + 2}$$
+
+We can apply partial fraction decomposition to split the expression into a form where they can be written as a power series representation. 
+$$ f(x) = \frac{2x + 3}{x^2+3x+2} = \frac{2x + 3}{(x + 1)(x + 2)} = \frac{1}{x + 1} + \frac{1}{x + 2} = \frac{1}{1 - (-x)} + \frac{1/2}{1 - (-x/2)} $$  
+
+We can now write the function as a power series representation: 
+\begin{align*}
+f(x) &= \frac{1}{1 - (-x)} + \frac{1/2}{1 - (-x/2)} \\
+	&= \sum_{n = 0}^{\infty} (-x)^n  + \sum_{n = 0}^{\infty} \left(\frac{1}{2} \right) \left(-\frac{x}{2}\right)^n \\
+	&= \sum_{n = 0}^{\infty} (-1)^nx^n  + \sum_{n = 0}^{\infty} (-1)^n\left(\frac{1}{2} \right)^{n + 1} x^{n} \\
+	&= \sum_{n = 0}^{\infty} (-1)^n \left[1 + \left(\frac{1}{2}\right)^{n + 1} \right] x^{n}
+\end{align*}
+
+Calculate the interval of convergence using the Ratio Test:
+
+$\inftylim{\left| \frac{a_{n + 1}}{a_n} \right|} = \inftylim{\left| \frac{\left[1 + \left(\frac{1}{2}\right)^{(n + 2)} \right] x^{n + 1}}{\left[1 + \left(\frac{1}{2}\right)^{n} \right] x^{n}}\right|} = \inftylim{\left| \frac{\left[1 + \left(\frac{1}{2}\right)^{(n + 2)} \right] x^{\cancel{n + }1}}{\left[1 + \left(\frac{1}{2}\right)^{n} \right] \cancel{x^{n}}}\right|}$
+
+
+$ \inftylim{\left| \frac{\left[1 + \left(\frac{1}{2}\right)^{(n + 2)} \right] x}{\left[1 + \left(\frac{1}{2}\right)^{n} \right]}\right|} = \inftylim{\left|\frac{[1 + 0]x}{[1 + 0]}\right| = \left|x \right|}$
+
+The radius of convergence is $\mathbf{R = 1}$. 
+Since this is a geometric series, the interval of convergence is $\mathbf{(-1, 1)}$.
+\end{solution}
+
+\pagebreak
+\begin{enumerate}[label=\alph*)]
+
+\item Use differentiation to find a power series representation for
+
+$$f(x) = \frac{1}{(1 + x)^{2}} $$
+What is the radius of convergence? 
+
+
+\item Use part (a) to find a power series for 
+
+$$f(x) = \frac{1}{(1 + x)^{3}} $$
+
+
+\item Use part (b) to find a power series for 
+
+$$f(x) = \frac{x^{2}}{(1 + x)^{3}} $$
+
+\end{enumerate}
+
+\begin{solution}
+a) Use differentiation to find a power series representation for
+
+$$f(x) = \frac{1}{(1 + x)^{2}} $$
+What is the radius of convergence? 
+
+
+We can find a power series representation for this function by recognizing that f(x) is a derivative of a function close to the geometric series.
+
+$$\frac{d}{dx}\left[ \frac{1}{1 + x} \right] = \frac{d}{dx}\left[ (-1)\frac{1}{(1 + x)^{2}} \right]$$ This is very close to the function that we want.
+
+The derivative of  $$\frac{d}{dx}\left[ -\frac{1}{1 + x} \right] = \frac{1}{(1 + x)^2}$$
+so we can use this to find the desired power series representation.
+
+\begin{align*} 
+\frac{-1}{1 + x} &= (-1) \cdot \frac{1}{1 - (-x)} \\
+	&= - \sum^{\infty}_{n = 0} (-x)^{n} \\ 	&= - \sum^{\infty}_{n = 0} (-1)^n(x)^{n} \\
+	&= \sum^{\infty}_{n = 0} (-1)^{n + 1}x^{n}
+\end{align*} 
+
+We can differentiate this power series to get the desired power series: 
+$$f(x) = \frac{d}{dx} \sum^{\infty}_{n = 0} (-1)^{n + 1}x^{n} = \sum^{\infty}_{n = 0} (-1)^{n + 1}nx^{n - 1}$$ 
+
+To simplify the form (not necessary) we can write the expression as 
+
+$$f(x) = \sum^{\infty}_{n = 0} (-1)^{n} (n + 1)x^{n}$$ 
+
+We can use the Ratio Test:
+
+$\inftylim{\left|\frac{a_{n + 1}}{a_n} \right|} = \inftylim{\left|\frac{(n + 2)x^{n+ 1}}{(n + 1)x^{n}} \right|} = \inftylim{\left|\frac{(nx + 2x)}{(n + 1)} \right|} = \inftylim{\left|\frac{x + \frac{2x}{n}}{1 + \frac{1}{n}} \right|} = \left|x\right| < 1$ ~\\
+
+Converges when $\left|x\right| < 1$, so the radius of convergence is $\mathbf{R = 1}$.
+\end{solution} 
+
+\begin{solution}
+Use part (a) to find a power series for 
+
+$$f(x) = \frac{1}{(1 + x)^{3}} $$
+
+We can use the power series $\mathlarger{\sum^{\infty}_{n = 0} (-1)^{n + 1}x^{n}}$ to find the power series representation of the given function, since the $-\frac{1}{2}$ times the derivative of $\frac{1}{(1 + x)^2}$ is the  function f(x).
+
+\begin{align*}
+f(x) &= -\frac{1}{2} \frac{d}{dx} \sum_{n = 0}^{\infty} (-1)^{n} (n + 1)x^{n} \\
+	&= -\frac{1}{2} \sum_{n = 0}^{\infty}  (-1)^{n}n(n + 1)x^{n -1} \\
+	&= -\frac{1}{2} \sum_{n = 0}^{\infty} (-1)^{n+1}n(n + 1)x^{n - 1}
+\end{align*}
+
+We can simplify this series as follows:
+
+$f(x) = x^{2} \frac{1}{2} \sum_{n = 0}^{\infty} (-1)^{n}(n + 1)(n + 2)x^{n}$
+
+We can rewrite this into an expression with $x^{n}$ 
+The radius of convergence of a differential series is the same as the original series, so $\mathbf{R = 1}$.
+
+\end{solution}
+
+\begin{solution}
+Use part (b) to find a power series for 
+
+$$f(x) = \frac{x^{2}}{(1 + x)^{3}} $$
+
+We can use the power series $-\frac{1}{2} \sum_{n = 0}^{\infty} (-1)^{n+1}n(n + 1)x^{n - 1}$  since this series is a product of $x^2$ and the series from part $(b)$.
+
+$$f(x) = x^{2} \frac{1}{2} \sum_{n = 0}^{\infty} (-1)^{n}(n + 1)(n + 2)x^{n} = \frac{1}{2} \sum_{n = 0}^{\infty} (-1)^{n}(n + 1)(n + 2)x^{n + 2} $$
+
+Using the Ratio Test, which is pretty straightforward to evaluate for this series, the radius of convergence is $R = 1$.
+
+Note that we need to use the Ratio Test to calculate a new radius of convergence because it is a \emph{product}, not an integration or differentiation.
+
+\end{solution}
+\pagebreak
+Evaluate the indefinite integral as a power series. What is the radius of convergence?
+
+$$\int \frac{x}{1 - x^{8}} \text{ }dx$$
+
+\begin{solution}
+
+We can find the power series representation for the indefinite integral by first finding the power series of $\frac{x}{1 - {x^8}}$, then applying term-by-term integration to that power series representation.
+$$\frac{x}{1 - x^8} = x\frac{1}{1 - (x^8)}$$
+
+$$f(x) = x \sum_{n=0}^{\infty} (x^{8})^n = \sum_{n=0}^{\infty} x^{8n + 1}$$
+
+
+We can integrate this series to get the desired power series representation:
+$$ \int f(x) \text{ }dx  = \int \sum_{n=0}^{\infty} x^{8n + 1} dx =  \sum_{n=0}^{\infty} \frac{x^{8n+ 2}}{8n+2} + C$$
+
+
+The radius of convergence of the integration of a power series is the same as the original series, so we can use the original series to calculate the radius of convergence.
+
+Apply the Ratio Test:
+
+
+Thus, the radius of convergence of the original series and the desired series $R = 1$.
+
+\end{solution}
+\pagebreak
+Show that the function 
+$$f(x) = \sum^{\infty}_{n=0} \frac{(-1)^nx^{2n}}{(2n)!}$$
+is a solution of the differential equation
+$$f''(x) + f(x) = 0$$
+
+\begin{solution}
+To show that the function is a solution of the differential equation, we need to calculate the derivatives of each function and plug them into the equation. If the equation will be satisfied with any given value of $x$, the function is a solution.
+
+$$f(x) = \sum_{n=0}^{\infty} \frac{(-1)^nx^{2n}}{(2n)!}, f'(x) = \sum_{n=0}^{\infty} \frac{(-1)^n (2n)x^{2n - 1}}{(2n)!}, f''(x) = \sum_{n=0}^{\infty} \frac{(-1)^n (2n)(2n - 1)x^{2n - 2}}{(2n)!}$$
+Plug the function $f(x)$ and its derivative into the equation:
+\begin{align*}
+f''(x) &+ f(x) &= 0 \\
+\left(\sum_{n=1}^{\infty} \frac{(-1)^n (2n)(2n - 1)x^{2n - 2}}{(2n)!}\right) &+ \left(\sum_{n=0}^{\infty} \frac{(-1)^nx^{2n}}{(2n)!}\right) &= 0 & \quad \text{Let f''(x) start at n = 1} \\
+\left(\sum_{n=1}^{\infty} \frac{(-1)^n \cancel{(2n)}\cancel{(2n - 1)}x^{2n - 2}}{\cancel{(2n)}\cancel{(2n - 1)}(2n - 2)!}\right) &+ \left(\sum_{n=0}^{\infty} \frac{(-1)^nx^{2n}}{(2n)!}\right) &= 0 & \quad \text{Simplify f''(x)} \\
+\left(\sum_{n=1}^{\infty} \frac{(-1)^n x^{2n - 2}}{(2n - 2)!}\right) &+ \left(\sum_{n=0}^{\infty} \frac{(-1)^nx^{2n}}{(2n)!}\right) &= 0 & \quad \text{} \\
+\left(\sum_{n=(0)}^{\infty} \frac{(-1)^{(n- 1)} x^{2(n - 1) - 2}}{(2(n - 1) - 2)!}\right) &+ \left(\sum_{n=0}^{\infty} \frac{(-1)^nx^{2n}}{(2n)!}\right) &= 0 & \quad \text{f''(x): Replace n with n + 1} \\
+\left(\sum_{n=(0)}^{\infty} \frac{(-1)^{(n- 1)} x^{2(n - 1) - 2}}{(2(n - 1) - 2)!}\right) &+ \left(\sum_{n=0}^{\infty} \frac{(-1)^nx^{2n}}{(2n)!}\right) &= 0 & \quad \text{f''(x): Replace n with n + 1} \\
+\end{align*}
+
+Notice that the reason why we are replacing $n$ with $n - 1$ because we wanted to rewrite $f''(x)$ as a Taylor series that starts at $n = 0$, not $n = 1$. This makes it possible to add the series and cancel them out.
+\end{solution}
+
+\section*{11.10 Taylor Series}
+\subsection*{Quiz Questions}
+
+If $f^{(n)}(0) = (n + 1)!$ for $n = 0, 1, 2, ...$, find the Maclaurin series for $f$ and the radius of convergence.
+
+\begin{solution}
+$f^{(n)}(0)$ is the nth derivative of the function. In order to find the Maclaurin series, we only need to plug it back into the formula for the Maclaurin series, which is
+
+
+$$\sum_{n=0}^{\infty} (n + 1)x^{n}$$
+
+$$\lim_{n \to \infty} \left| \frac{a_{n+1}}{a_n} \right| = \lim_{n \to \infty} \left| \frac{(n + 2)|x|}{n + 1} \right| = |x| < 1$$ 
+
+The radius of convergence for f(x) when $a = 0$ is $\mathbf{R = 1}$
+
+\end{solution}
+
+Use the definition of a Taylor series to find the first four nonzero terms of the series for $f(x)$ centered at the given value of $a$.
+
+
+\begin{solution}
+
+For this kind of problem, you want to keep finding subsequent Taylor series terms you get four \textbf{nonzero} terms. 
+
+$f(x) = \sqrt[3]{x}, a = 8$
+
+
+\end{solution}
+
+Find the Maclaurin series for $f(x)$ using the definition of a Maclaurin series.
+
+
+\begin{solution}
+
+For this, we need to find the Maclaurin series by writing out the series term-by-term, until we can identify a formula. We shouldn't use the given Maclaurin series formulas.
+
+
+
+\end{solution}
+
+
+Find the Taylor series centered at the given value of $a$. Also find the associated radius of convergence.
+
+
+\begin{solution}
+
+$f(x) = \sin{x}$
+
+NOTE: Remember that you can't use $(-1)^{n -1}$ when $n = 0$. Be careful to not do this.
+
+\end{solution}
+
+
+\end{document}

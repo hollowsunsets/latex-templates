@@ -1,0 +1,351 @@
+\documentclass[10pt,landscape]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{multicol}
+\usepackage{calc}
+\usepackage{enumerate}
+\usepackage{ifthen}
+\usepackage[landscape]{geometry}
+\usepackage{graphicx}
+\usepackage{tabu}
+\usepackage{amsmath,amsthm,amsfonts,amssymb}
+\DeclareMathOperator{\arcsec}{arcsec}
+\DeclareMathOperator{\arccot}{arccot}
+\DeclareMathOperator{\arccsc}{arccsc}
+\DeclareMathOperator{\Sf}{Sf}
+\DeclareMathOperator{\gr}{gr}
+\usepackage{color,graphicx,overpic}
+\usepackage{hyperref}
+\usepackage{mathtools}
+\usepackage{tikz}
+\usepackage{relsize}
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+            \node[shape=circle,draw,inner sep=1pt] (char) {#1};}}
+\newcommand{\RNum}[1]{\uppercase\expandafter{\romannumeral #1\relax}}
+\newcommand{\Lagr}{\mathcal{L}}
+\graphicspath{ {./images/} } 
+
+\pdfinfo{
+  /Title (MATH 153 Quiz 6 Cheat Sheet)
+  /Creator (Isabel Giang)
+  /Producer (Isabel Giang)
+  /Author (Isabel Giang)
+  /Subject (Parametric Equations)
+  /Keywords (pdflatex, latex,pdftex,tex)}
+
+\ifthenelse{\lengthtest { \paperwidth = 11in}}
+    { \geometry{top=.5in,left=.5in,right=.5in,bottom=.5in} }
+    {\ifthenelse{ \lengthtest{ \paperwidth = 297mm}}
+        {\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
+        {\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
+    }
+
+\pagestyle{empty}
+
+\makeatletter
+\renewcommand{\section}{\@startsection{section}{1}{0mm}%
+                                {-1ex plus -.5ex minus -.2ex}%
+                                {0.5ex plus .2ex}%x
+                                {\normalfont\large\bfseries}}
+\renewcommand{\subsection}{\@startsection{subsection}{2}{0mm}%
+                                {-1explus -.5ex minus -.2ex}%
+                                {0.5ex plus .2ex}%
+                                {\normalfont\normalsize\bfseries}}
+\renewcommand{\subsubsection}{\@startsection{subsubsection}{3}{0mm}%
+                                {-1ex plus -.5ex minus -.2ex}%
+                                {1ex plus .2ex}%
+                                {\normalfont\small\bfseries}}
+\makeatother
+
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+
+\setcounter{secnumdepth}{0}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt plus 0.5ex}
+
+\newtheorem{example}[section]{Example}
+% -----------------------------------------------------------------------
+
+\begin{document}
+\raggedright
+\footnotesize
+\begin{multicols*}{3}
+
+\setlength{\premulticols}{1pt}
+\setlength{\postmulticols}{1pt}
+\setlength{\multicolsep}{1pt}
+\setlength{\columnsep}{2pt}
+
+\begin{center}
+     \textbf{\large{\underline{MATH 153 Ch. 10 \& 12  Formula Sheet}}} \\
+\end{center}
+
+\section*{Conic Sections}
+
+For unshifted standard forms of conic sections, let $h = 0, k = 0$.
+\begin{center}	
+	{\tabulinesep=0.5mm
+	\textbf{Parabolas}
+	\begin{tabu} to \columnwidth {||c | c | c||}
+	\hline
+		Graph & \includegraphics[scale=0.25]{parabola1} & 
+				\includegraphics[scale=0.25]{parabola2} \\
+		\hline
+		Equation & $(x - h)^2 = 4p(y - k)$ & $(y - k)^2 = 4p(x - h)$ \\ 
+		{} & $y = (x - h)^2 + k$ & $x = (y - k)^2 + h$\\
+		\hline
+		Directrix & $y = k - p$ & $x = h - p$ \\
+		\hline
+		Foci  & $(h, k + p)$ & $(h + p, k)$ \\
+		\hline
+		Vertices & $(h, k)$ & $(h, k)$ \\
+	\hline
+	\end{tabu}}
+\end{center}
+\begin{center}	
+	{\tabulinesep=0.5mm
+	\textbf{Ellipses} $\mathbf{\frac{(x - h)^2}{a^2} + \frac{(y - k)^2}{b^2} = 1}$
+	\begin{tabu} to \columnwidth {||c | c | c||}
+	\hline
+		Graph & \includegraphics[scale=0.15]{ellipse1} & 
+				\includegraphics[scale=0.15]{ellipse2} \\
+		{} & {$a \geq b > 0$} & {$b \geq a > 0 $} \\
+		\hline
+		Center & $(h, k)$ & $(h, k)$ \\
+		\hline
+		Foci  & $(h \pm c, k)$ & $(h, k \pm c)$ \\
+		{} & $ \scriptstyle (c^2 = a^2 - b^2)$ & $ \scriptstyle (c^2 = b^2 - a^2)$  \\
+		\hline
+		Vertices & $(h \pm a, k)$ & $(h, k \pm b)$ \\
+		\hline
+	\hline
+	\end{tabu}}
+\end{center}
+\begin{center}	
+	{\tabulinesep=0.5mm
+	\textbf{Hyperbolas}
+	\begin{tabu} to \columnwidth {||c | c | c||}
+	\hline
+		Graph & \includegraphics[scale=0.15]{hyperbola1} & 
+				\includegraphics[scale=0.15]{hyperbola2} \\
+		\hline
+		Equation & $\frac{(x - h)^2}{a^2} - \frac{(y - k)^2}{b^2} = 1$ &
+				   $\frac{(y - k)^2}{b^2} - \frac{(x - h)^2}{a^2} = 1$\\
+		\hline
+		Center & $(h, k)$ & $(h, k)$ \\
+		\hline
+		Foci  & $(h \pm c, k)$ & $(h, k \pm c)$ \\
+		$ \scriptstyle (c^2 = a^2 + b^2)$ & {} & {}  \\
+		\hline
+		Vertices & $(h \pm a, k)$ & $(h, k \pm b)$ \\
+		\hline
+		Asympt. &  $y = k \pm \frac{b}{a}(x - h)$ & $y = k \pm \frac{b}{a}(x - h)$ \\
+	\hline
+	\end{tabu}}
+\end{center}
+\vfill
+\columnbreak
+
+\section{Parametric Equations}
+General Form of Parametric Equations
+$$ x = f(t), \quad y = g(t), \quad a \leq t  \leq b$$
+Parametric Equations of an Ellipse
+$$ x = a \cos(\omega)t, \quad y = b \sin(\omega)t$$
+Traces an ellipse exactly once in a counter-clockwise direction starting at the point $(a, 0)$ in the range $0 \leq t \leq 2\pi$
+\subsection{Parametric Derivatives}
+$$ \frac{dy}{dx} = \mathlarger{\frac{\frac{dy}{dt}}{\frac{dx}{dt}}}, \text{where } \frac{dx}{dt} \neq 0$$
+$$ \frac{d^2y}{dx^2} = \frac{d}{dx}\left(\frac{dy}{dx}\right) = \frac{\frac{d}{dt}\left(\frac{dy}{dx}\right)}{\frac{dx}{dt}}$$
+\subsection{Parametric Tangents}
+Tangent Line: $\mathlarger{y = F(a) + m(x - a) \text{ where } \frac{d}{dx}\Bigr|_{\substack{t=a}} = F'(a)}$
+Horizontal Tangents: $\mathlarger{\frac{dy}{dt} = 0,\text{where } \frac{dx}{dt} \neq 0} $
+
+Vertical Tangents: $\mathlarger{\frac{dx}{dt} = 0, \text{where } \frac{dy}{dt} \neq 0} $
+\subsection{Parametric Areas Under Curves}
+$$ A = \int^{\beta}_{\alpha} g(t) f'(t) \text{ dt}, \quad a = f(\alpha), b = f(\beta)$$
+
+$$ A = \int^{\alpha}_{\beta} g(t) f'(t) \text{ dt}, \quad b = f(\alpha), a = f(\beta) $$
+where $\alpha$ and $\beta$ are values of $t$, $a$ and $b$ are values of $x$, $y$.
+\subsection{Parametric Arc Length}
+
+$$ L = \int^{\beta}_{\alpha} \sqrt{\left(\frac{dx}{dt} \right)^2 + \left(\frac{dy}{dt} \right)^2} \text{ dt}$$ 
+
+The calculated arc length may not be proportional to the number of times the parametric curve has been traced. 
+\subsection{Parametric Surface Areas}
+$$S = \int 2\pi{y} \text{ ds} \quad \text{ rotation about x-axis} $$
+$$S = \int 2\pi{x} \text{ ds} \quad \text{ rotation about y-axis} $$
+$$\text{ds} = \sqrt{\left(\frac{dx}{dt}\right)^2 + \left(\frac{dy}{dt} \right)^2} \text{ dt } \quad \text{ if } x = f(t), y = g(t), \alpha \leq t \leq \beta $$
+\vfill
+\columnbreak
+
+\section{Polar Coordinates}
+
+Alt. Representations of Polar Coordinates
+$$(r, \theta + 2\pi n)$$
+$$(-r, \theta + (2\pi + 1)n)$$
+
+Polar to Cartesian Formula
+$$x = r \cos(\theta) $$
+$$y = r \sin(\theta) $$
+
+Cartesian to Polar Formula
+$$r^2 = x^2 + y^2; \quad r = \sqrt{x + y} $$ 
+$$\theta = \tan^{-1}\left( \frac{y}{x} \right) $$
+
+\subsection{Basic Polar Graphs}
+
+
+\begin{center}
+\textbf{Symmetry Tests}\\
+{\tabulinesep=0.5mm
+	\begin{tabu} to \columnwidth {||c | c ||}
+			\hline
+			Symmetric about the polar axis or x-axis & $(r, -\theta)$ \\
+			Symmetric about the pole/origin & $(-r, \theta)$ \\
+			Symmetric about $\theta = \pi/2$ or y-axis & $(-r, -\theta)$ \\
+		\hline
+	\end{tabu}}
+\end{center}
+
+\begin{center}	
+	\textbf{Lines} \\
+	{\tabulinesep=0.5mm
+	\begin{tabu} to \columnwidth {||c | c ||}
+		\hline
+			Polar & Cartesian \\
+			\hline
+			$\theta = \beta$ & $y = (\tan \beta) x$ \\
+			$r\cos \theta = a$ & $x = a$ \\
+			$r\sin \theta = b$ & $y = b$ \\
+		\hline
+	\end{tabu}}
+\end{center}
+
+\begin{center}	
+	\textbf{Circles} \\
+	{\tabulinesep=0.5mm
+	\begin{tabu} to \columnwidth {||c | c ||}
+		\hline
+			Polar & Cartesian \\
+			\hline
+			$r = a$ & $x^2 + y^2 = a^2$ \\
+			$r = 2a\cos\theta$ & $(x - a)^2 + y^2 = (\left|a \right|)$ \\
+			$r = 2b\sin\theta$ & $x^2 + (y - b)^2 = (\left|b \right|)$ \\
+		\hline
+	\end{tabu}}
+\end{center}
+
+\subsection{Polar Tangents}
+$$ \frac{dy}{dx} = \frac{\frac{dr}{d\theta} \sin \theta + r \cos \theta}{\frac{dr}{d\theta} \cos\theta - r\sin\theta} $$
+\subsection{Polar Areas Under Curves}
+$$A = \int^{\beta}_{\alpha} \frac{1}{2}r^2 d\theta$$
+\subsection{Polar Arc Length}
+$$L = \int ds = \int \sqrt{r^2 + \left(\frac{dr}{d\theta}\right)^2} d\theta $$ 
+
+
+\subsection{Polar Conic Sections}
+
+Horizontal Conic: $\mathlarger{r = \frac{ed}{1 \pm e\cos\theta}, \quad x \pm d}$ 
+
+~\\
+
+Vertical Conic:
+$ \mathlarger{r = \frac{ed}{1 \pm e\sin\theta}, \quad y \pm d}$
+
+
+~\\
+
+The conic is an ellipse if $e < 1$, a parabola if $e = 1$ or a hyperbola if $e > 1$.
+
+\section*{3D Coordinate Space}
+Distance Between Two Points in 3D
+$$d(P_1, P_2) = \sqrt{(x_2 - x_2)^2 + (y_2 - y_1)^2 + (z_2 - z_1)^2} $$
+
+Eq. of Sphere with center $(h, k, l)$ and radius $r$:
+$$ (x - h)^2 + (y - k)^2 + (z - l)^2 = r^2 $$
+
+\section*{Vectors}
+Magnitude of a Vector: $\quad |\vec{a}\| = \sqrt{a_1^2 + a_2^2 + \dots + a_n^2}$~\\
+
+Direction of a Vector: $ \theta = \arctan\left(\frac{\vec{a}_x}{\vec{a}_y} \right) $~\\
+
+Unit Vector: $\quad \mathlarger{\vec{u} = \frac{1}{|\vec{a}|}\vec{a}}$~\\
+
+~\\
+
+Net Angle Between Two Vectors 
+$$\cos \theta = \frac{\vec{a} \cdot \vec{b}}{|\vec{a}| |\vec{b}|} $$
+Direction Cosines
+$$\frac{1}{|a|}\vec{a} = \langle \cos \alpha, \cos \beta, \cos \gamma \rangle $$
+Scalar projection of $\vec{b}$ onto $\vec{a}$:
+$$\text{comp}_{\vec{a}}\vec{b} = \frac{\vec{a} \cdot \vec{b}}{|\vec{a}|}$$
+Vector projection of $\vec{b}$ onto $\vec{a}$:
+$$\text{proj}_{\vec{a}}\vec{b} = \frac{\vec{a} \cdot \vec{b}}{|\vec{a}^2|}\vec{a}$$
+\subsection*{Dot Product}
+Given two vectors $\vec{a} = \langle a_1, a_2, \dots, a_n \rangle$ and $\vec{b} = \langle b_1, b_2, \dots, b_n \rangle$, the dot product $\vec{a} \cdot \vec{b}$ is:
+$$\vec{a} \cdot \vec{b} =  a_1b_1 + a_2b_2 + \dots + a_nb_n  $$
+$$ \vec{a} \cdot \vec{b} = |a||b|\cos\theta $$
+\subsection*{Cross Product}
+Given two vectors $\vec{a} = \langle a_1, a_2, a_3 \rangle$ and $\vec{b} = \langle b_1, b_2, b_3 \rangle$ in $\mathbf{R^{3}}$, the cross product $\vec{a} \times \vec{b}$ is:
+
+$$\vec{a} \times \vec{b} = \langle a_2b_3 - a_3b_2, a_3b_1 - a_1b_3, a_1b_2 - a_2b_1 \rangle $$
+$$|\vec{a} \times \vec{b}| = |a||b|\sin\theta $$
+
+\vfill
+\columnbreak
+\section{Other Formulas}
+\subsection{Exponent Properties}
+$$a^ma^n = a^{n + m}$$
+$$(a^{n})^m = a^{nm}$$
+$$\frac{a^n}{a^m} = a^{n - m}$$
+$$(ab)^n = a^{n}b^{n}$$
+$$\left(\frac{a^{n}}{b^{m}} \right) = \frac{a^{nk}}{b^{mk}}$$
+$$\frac{1}{a^{-n}} = a^{n}$$
+\subsection{Logarithm Properties}
+$$\log_b(M \cdot N) = \log_b(M) + \log_b(N)$$
+$$\log_b\left(\frac{M}{N}\right) = \log_b(M)- \log_b(N)$$
+$$\log_b(M^{k}) = k\cdot \log_b(M) $$
+\subsection{Trignometric Identities}
+$$\sin^2 x + \cos^2 x = 1$$
+$$1 + \tan^2 x = \frac{1}{\cos^2 x}$$
+$$\cos^2 x = \frac{1 + \cos(2x)}{2}$$
+$$\sin^2 x = \frac{1 - \cos(2x)}{2}$$
+$$\sin(2x) = 2\sin(x)\cos(x) $$
+$$\cos(2x) = \cos^2(x) - \sin^2(x)$$
+$$\qquad = 2\cos^2(x) - 1$$
+$$\qquad = 1 - 2\sin^2(x)$$
+
+\subsection{Trigonometry Reference}
+
+\begin{center}	
+	\textbf{Common Values of Sine and Cosine} \\
+	~\\
+	{\tabulinesep=0.5mm
+	\begin{tabu} to \columnwidth {||c | c | c ||}
+		\hline
+			$\theta$ & Cosine & Sine \\
+			\hline
+			0        & 1            & 0\\
+			$\pi/6$  & $\sqrt{3}/2$ & $1/2$\\
+			$\pi/4$  & $\sqrt{2}/2$ & $\sqrt{2}/2$ \\
+			$\pi/3$  & $1/2$        & $\sqrt{3}/2$\\
+			$\pi/2$  & $0$          & $1$\\
+			$\pi$    & $-1$         & $0$ \\
+			$3\pi/2$ & $0$          & $-1$ \\
+		\hline
+	\end{tabu}}
+\end{center}
+
+
+%\clearpage
+%\rule{0.3\linewidth}{0.25pt}
+%\scriptsize
+%\bibliographystyle{abstract}
+%\bibliography{refFile}
+
+
+
+
+
+\end{multicols*}
+\end{document}
