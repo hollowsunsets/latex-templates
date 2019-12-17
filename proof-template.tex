@@ -1,0 +1,289 @@
+\documentclass[12pt]{article}
+
+\usepackage{fancyhdr} % For the customized heading
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[most]{tcolorbox}
+\usepackage{multicol}
+\usepackage{adjustbox}
+\usepackage{amsmath,amsthm,amsfonts,amssymb} % For math symbols
+\usepackage{extramarks}
+\usepackage{graphicx} % For adding pictures
+\usepackage{booktabs}
+\usepackage{tabu}
+\usepackage[T1]{fontenc}
+\usepackage{enumitem}
+\usepackage[parfill]{parskip}
+\usepackage{changepage}
+\usepackage{scrextend}
+\usepackage{gauss}% http://ctan.org/pkg/gauss
+\usepackage{hyperref}
+\usepackage{mathtools}
+\usepackage{calc}
+\usepackage{scrextend}
+
+%% Packages for APA bibliographies 
+\usepackage{apacite} % for the references page
+\usepackage{url} % for hyperlinks in references
+
+\usepackage{empheq}
+
+
+\newtcolorbox[auto counter]{lin-proof}[1][]
+{colframe=blue!30,
+	colback=white,
+	sharp corners,
+	title=\emph{Proof},
+	enhanced,
+	coltitle=black,
+	fonttitle=\bfseries,
+	attach boxed title to top left={yshift*=-\tcboxedtitleheight/2, xshift=3mm},
+	boxed title style={sharp corners, colback=blue!30},
+	#1 
+}
+
+\newtcolorbox[auto counter]{solution}[1][]
+{colframe=blue!20,
+	colback=white,
+	sharp corners,
+	title=Solution,
+	enhanced,
+	fontupper=\linespread{1.0}\selectfont,
+	coltitle=black,
+	fonttitle=\bfseries,
+	attach boxed title to top left={yshift*=-\tcboxedtitleheight/2, xshift=3mm},
+	boxed title style={sharp corners, colback=blue!20},
+	#1
+}
+
+\newtcbox{\boxedeq}[1][]{%
+    nobeforeafter, math upper, tcbox raise base,
+    enhanced, colframe=black,
+    colback=white, boxrule=0.5pt,
+    #1}
+\newenvironment{amatrix}[1]{
+	\left[\begin{array}{@{}*{#1}{c}|c@{}}
+}{
+		\end{array}\right]
+}
+%% BASIC DOCUMENT SETTINGS %%
+
+\graphicspath{ {./images/} } 
+
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in
+
+\linespread{1.1}
+
+\pagestyle{fancy}
+\lhead{\hmwkAuthorName}
+\chead{}
+\rhead{\hmwkTitle}
+\lfoot{\lastxmark}
+\cfoot{\thepage}
+
+\newcommand{\hmwkTitle}{\textbf{MATH 208 HW 4.1: Subspaces}}
+\newcommand{\hmwkDueDate}{January 17, 2019}
+\newcommand{\hmwkClass}{\textbf{MATH 238 - Differential Equations}}
+\newcommand{\hmwkClassTime}{Section A}
+\newcommand{\hmwkClassInstructor}{Timothy Trammel}
+\newcommand{\hmwkAuthorName}{\textbf{Isabel Giang}}
+\newcommand{\continueNextPage}{\begin{flushright}\textit{Continued on the next page...}
+\end{flushright} \pagebreak}
+\renewcommand\headrulewidth{0.4pt}
+\renewcommand\footrulewidth{0.4pt}
+
+\setlength\parindent{0pt}
+
+
+%% TITLE PAGE SETTINGS %%
+
+\title{
+    \vspace{2in}
+    \textmd{\textbf{\hmwkTitle}}\\
+    \large\vspace{0.1in}{\hmwkClass}\\
+    \large\vspace{0.1in}{\textbf{Date: }\hmwkDueDate}\\
+    \vspace{0.1in}{\textbf{Professor: }\hmwkClassInstructor}
+    \vspace{1in}
+}
+
+\author{\hmwkAuthorName}
+\date{}
+
+\renewcommand{\vec}[1]{\mathbf{#1}}
+\renewcommand\qedsymbol{$\blacksquare$}
+\newcommand{\lintrans}{T: \mathbf{R^{m}} \rightarrow \mathbf{R^{n}}}
+
+\newenvironment{question}[1]{
+\textbf{#1}.
+}
+
+
+\NewEnviron{elaboration}{
+\par
+\begin{tikzpicture}
+\node[rectangle,minimum width=0.9\textwidth] (m) {\begin{minipage}{0.85\textwidth}\BODY\end{minipage}};
+\draw[dashed] (m.south west) rectangle (m.north east);
+\end{tikzpicture}
+}
+
+\begin{document}
+
+\begin{elaboration}
+
+\textbf{Definition of a Subspace}:
+A subset $S$ of $\vec{R^n}$ is a subspace if $S$ satisfies the following three conditions:
+
+\begin{enumerate}[label=(\roman{enumi})]
+\item $S$ contains $\vec{0}$, the zero vector.
+\item If $\vec{u}, \vec{v}$ are in $S$, then $\vec{u + v}$ is in $S$. This is known as \emph{closure under addition}.
+\item If $\vec{u}$ is in $S$, then $r\vec{u}$ is in $S$ for every real number $r$. This is known as \emph{closure under scalar multiplication.}
+\end{enumerate}
+
+
+We can determine if this subset is a subspace by checking if it satisfies all three of these conditions. 
+
+We can also use \textbf{Theorem 4.2}, which states: Let $S$ = span($\{\vec{u_1}, \vec{u_2},..., \vec{u_m} \}$) be a subset of $R^n$. Then $S$ is a subspace of $R^n$.
+
+\end{elaboration}
+
+\pagebreak
+\section*{Proofs}
+
+\textbf{63.} Prove that if $\vec{b} \neq 0$, then the set of solutions to $A\vec{x} = \vec{b}$ is not a subspace.
+
+\begin{lin-proof}
+We will prove this by assuming the contrapositive.
+
+Assume that the set of solutions to $A\vec{x} = \vec{b}$ is in fact a subspace. If this is the case, then the set of solutions must contain the zero vector $\vec{0}$. 
+
+This also means that the zero vector $\vec{0}$ must satisfy the matrix equation $A\vec{x} = \vec{b}$, such that $A\vec{0} = \vec{x}$.
+
+ We know this isn't true, because $A\vec{0} = \vec{0}$, which means that b must be $\vec{0}$, but it is given that $b \neq \vec{0}$. 
+ 
+Thus, since the only way for the set of solutions to be a subspace is for it to contain the zero vector is if $b = \vec{0}$, which is not true, the set of solutions cannot be a subspace. 
+
+
+ \begin{flushright}$\blacksquare$ \end{flushright}
+\end{lin-proof}
+
+\textbf{69.}  Let $A$ be a matrix and $T(\vec{x}) = A\vec{x}$ a linear transformation. Show that $ker(T) = \{\vec{0}\}$ if and only if the columns of $A$ are linearly independent.
+
+\begin{lin-proof}
+
+The transformation $T(\vec{x}) = A\vec{x}$ is linear, so we know that the following conditions must be satisfied:~\\
+
+\begin{elaboration}
+\textbf{Definition of a Linear Transformation}
+\begin{enumerate}[label=\alph*)]
+\item $T(\vec{u} + \vec{v}) = T(\vec{u}) + T(\vec{v})$
+
+\item $T(c\vec{u}) = cT(\vec{u})$
+\end{enumerate}
+
+\end{elaboration}
+
+Recall that the kernel of $T$, ker$(T)$ is the set of vectors $\vec{x}$ such that $T(\vec{x}) = \vec{0}$.
+
+Also recall that in order for a set of vectors to be linearly independent, the only solution to the vector equation
+$$\vec{x_1} + \vec{x_2} + \dots + \vec{x_n} = \vec{0}$$ must be the trivial solution. 
+
+Since ker$(T)$ is the set of vectors that satisfies T$(\vec{x}) = \vec{0}$ and the matrix equation $A\vec{x} = 0$ corresponds with this matrix, the only vector in ker$(T)$ must be the trivial solution.
+
+So ker$(T)$ must be equal to $\vec{0}$ - in other words, the trivial solution - if and only if the columns of $A$ are linearly independent.
+ \begin{flushright}$\blacksquare$ \end{flushright}
+\end{lin-proof}
+\pagebreak
+\textbf{70.} If $T$ is a linear transformation, show that $\vec{0}$ is always in ker($T$).
+
+\begin{lin-proof}
+
+The transformation $T$ is linear, so we know that the following conditions must be satisfied:~\\
+
+\begin{elaboration}
+\textbf{Definition of a Linear Transformation}
+\begin{enumerate}[label=\alph*)]
+\item $T(\vec{u} + \vec{v}) = T(\vec{u}) + T(\vec{v})$
+
+\item $T(c\vec{u}) = cT(\vec{u})$
+\end{enumerate}
+
+\end{elaboration}
+
+Recall that the kernel of $T$, ker$(T)$ is the set of vectors $\vec{x}$ such that $T(\vec{x}) = \vec{0}$.
+
+
+Since $T(c\vec{u}) = cT(\vec{u})$ by the definition of a linear transformation, we know that $T(0\vec{u}) = 0T(\vec{u})$ This must equal the zero vector $\vec{0}$.
+
+Since $T(0) = \vec{0}$, the zero vector is part of the set of vectors where $T(\vec{x}) = \vec{0}$, so the zero vector $\vec{0}$ must be in ker$(T)$.
+
+ \begin{flushright}$\blacksquare$ \end{flushright}
+\end{lin-proof}
+
+\textbf{71.} Prove that if $u$ and $v$ are in a subspace $S$, then so is $\vec{u - v}$.
+
+\begin{lin-proof}
+If $\vec{u}$ and $\vec{v}$ are in the subspace $S$, this means that all linear combinations of $\vec{u}$ and $\vec{v}$ are also in the subspace, since the definition of a subspace requires that the closure properties - closure under addition and closure under scalar multiplication - be satisfied.
+
+Particularly, since $S$ is closed under addition, $\vec{u} + \vec{-v} = \vec{u + v}$ must be in $S$.
+
+The subtraction of vectors can be understood as the addition of negative scalar multiples, which is satisfied by the closure properties.
+ \begin{flushright}$\blacksquare$ \end{flushright}
+\end{lin-proof}
+
+\pagebreak
+\textbf{72.} Prove Theorem 4.6: If $T$ is a linear transformation, then $T$ is one-to-one if and only if ker($T$) = $\{\vec{0}\}$.
+
+\begin{lin-proof}
+
+\begin{elaboration}
+\textbf{Theorem 4.6}
+
+Given a linear transformation $T: \vec{R^{m}} \rightarrow \vec{R^{n}}$, $T$ must be one-to-one if and only if ker$(T)$ = $\lbrace \vec{0} \rbrace$.
+
+\end{elaboration} ~\\
+
+\underline{Prove that $T$ being one-to-one implies that ker$(T)$ = $\lbrace \vec{0} \rbrace$.}
+
+\begin{addmargin}[1em]{2em}
+
+Assume that $T$ is one-to-one. This means that there is at most one solution to $T(\vec{x})$. We know this because of Theorem 3.5. ~\\
+
+\begin{elaboration}
+\textbf{Theorem 3.5}
+
+Let $T$ be a linear transformation. $T$ is one-to-one if and only if $T(\vec{x}) = \vec{0}$ has only the trivial solution $\vec{x} = \vec{0}$.
+
+\end{elaboration}
+
+Since T is a linear transformation, we know that $T(\vec{0}) = 0$ since $T(c\vec{0}) = cT(\vec{0}) = \vec{0}$.
+Thus, ker($T$) = $\lbrace \vec{0} \rbrace$~\\
+
+\end{addmargin}
+
+
+\underline{Prove that  implies that ker$(T)$ = $\lbrace \vec{0} \rbrace$ implies that $T$ is one-to-one.}
+
+\begin{addmargin}[1em]{2em}
+
+Assume that ker$(T)$ only contains the trivial solution in its set of vectors.
+
+If $T(\vec{u}) = T(\vec{v})$, then $T(u) - T(v) = 0$.
+This implies that $T(\vec{u} - \vec{v})$ = $\vec{0}$. We know this is true since T is a linear transformation, and  $T(\vec{u} + \vec{v}) = T(\vec{u}) + T(\vec{v})$.
+
+
+Since $T(\vec{x}) = \vec{0})$ only has the trivial solution, if ker$(T)$ = $\lbrace \vec{0} \rbrace$, it follows that $\vec{u - v} = \vec{0}$ and $\vec{u} = \vec{v}$. Thus, $T$ is one-to-one.
+
+
+\end{addmargin}
+
+ \begin{flushright}$\blacksquare$ \end{flushright}
+\end{lin-proof}
+
+
+
+\end{document}
